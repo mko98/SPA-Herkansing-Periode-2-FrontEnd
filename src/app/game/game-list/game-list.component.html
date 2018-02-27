@@ -2,14 +2,11 @@
   <div class="col-md-12">
     <h1>Game List</h1>
   </div>
-  <!--<div class="col-xs-8">-->
-    <!--<h5>Game not found? Add the game!</h5>-->
-  <!--</div>-->
-  <!--<div class="col-xs-3">-->
-    <!--<button class="btn btn-success itemStyle" (click)="onNewGame()"><span class="glyphicon glyphicon-plus iconButton"></span>New Game</button>-->
-  <!--</div>-->
+  <div class="col-xs-3">
+    <button class="btn btn-success itemStyle" (click)="onNewGame()"><span class="glyphicon glyphicon-plus iconButton"></span>New Game</button>
+  </div>
 </div>
-
+<br>
 <div class="row">
   <div class="col-xs-12">
     <app-game-item
@@ -18,3 +15,5 @@
       [index]="i"></app-game-item>
   </div>
 </div>
+
+

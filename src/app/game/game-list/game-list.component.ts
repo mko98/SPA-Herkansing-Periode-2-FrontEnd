@@ -46,7 +46,7 @@ export class GameListComponent implements OnInit {
   //   // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
   // }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 }

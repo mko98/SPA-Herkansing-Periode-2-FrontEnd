@@ -1,7 +1,18 @@
-<br>
-<div
-  class="list-group-item col-md-8">
-  <div class="col-md-8 text-center">
-    <h6 class="list-group-item-heading">{{ publisher.name }}</h6>
+<a
+  style="cursor: pointer;"
+  [routerLink]="[index]"
+  routerLinkActive="active"
+  class="list-group-item clearfix itemSpacing itemStyle">
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{ publisher.publisherName }}</h4>
+    <p class="list-group-item-text">{{ publisher.founder }}</p>
+    <p class="list-group-item-text">{{ publisher.ceo }}</p>
   </div>
-</div>
+  <div>
+
+  </div>
+  <span class="pull-right">
+      </span>
+</a>
+
+<br>

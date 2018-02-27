@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
+import {Publisher} from '../../publisher/publisher.model';
+import {PublisherService} from '../../publisher/publisher.service';
 
 @Component({
   selector: 'app-publisher-list',
@@ -7,9 +11,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublisherListComponent implements OnInit {
 
-  constructor() { }
+  publishers: Publisher[];
+  subscription: Subscription;
 
-  ngOnInit() {
+  constructor(private publisherService: PublisherService,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
+  ngOnInit() {
+    this.publisherService.getPublishers()
+      .then(res => {
+        this.publishers = res;
+      });
+    this.subscription = this.publisherService.publisherChanged
+      .subscribe(
+        (publishers: Publisher[]) => {
+          this.publisherService.getPublishers()
+            .then(res => {
+              this.publishers = res;
+            });
+          console.log('get publishers aangeroepen.');
+          console.dir(publishers);
+        }
+      );
+  }
+
+  onNewPublisher() {
+    this.router.navigate(['new'], {relativeTo: this.route});
+  }
+
+  // onGenre() {
+  //   this.router.navigate(['/genre/' + this.publisher.genre], {relativeTo: this.route});
+  //   // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
+  // }
+
+  // ngOnDestroy() {
+  //   this.subscription.unsubscribe();
+  // }
 }

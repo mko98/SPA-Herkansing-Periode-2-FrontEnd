@@ -1,8 +1,12 @@
 export class Publisher {
   private id: string;
-  private _name: string;
+  private _publisherName: string;
   private _founder: string;
   private _ceo: string;
+
+  constructor(values: Object = {}) {
+    Object.assign(this, values);
+  }
 
   public get _id() {
     return this.id;
@@ -12,12 +16,12 @@ export class Publisher {
     this.id = n;
   }
 
-  public get name() {
-    return this._name;
+  public get publisherName() {
+    return this._publisherName;
   }
 
-  public set name(n: string) {
-    this._name = n;
+  public set publisherName(n: string) {
+    this._publisherName = n;
   }
 
   public get founder() {
@@ -26,5 +30,13 @@ export class Publisher {
 
   public set founder(n: string) {
     this._founder = n;
+  }
+
+  public get ceo() {
+    return this._ceo;
+  }
+
+  public set ceo(n: string) {
+    this._ceo = n;
   }
 }

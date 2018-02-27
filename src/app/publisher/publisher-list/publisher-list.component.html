@@ -1,3 +1,19 @@
-<p>
-  publisher-list works!
-</p>
+<div class="row" style="margin-top: 30px;">
+  <div class="col-md-12">
+    <h1>Publisher List</h1>
+  </div>
+  <div class="col-xs-3">
+    <button class="btn btn-success itemStyle" (click)="onNewPublisher()"><span class="glyphicon glyphicon-plus iconButton"></span>New Publisher</button>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-xs-12">
+    <app-publisher-item
+      *ngFor="let publisherEL of publishers; let i = index"
+      [publisher]="publisherEL"
+      [index]="i"></app-publisher-item>
+  </div>
+</div>
+
+

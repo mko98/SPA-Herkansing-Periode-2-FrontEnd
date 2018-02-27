@@ -7,15 +7,16 @@ import {PublisherComponent} from './publisher/publisher.component';
 import {PublisherStartComponent} from './publisher/publisher-start/publisher-start.component';
 import {PublisherDetailComponent} from './publisher/publisher-detail/publisher-detail.component';
 import {GameEditComponent} from './game/game-edit/game-edit.component';
+import {PublisherEditComponent} from './publisher/publisher-edit/publisher-edit.component';
 
 const appRoutes: Routes = [
 
   { path: '', redirectTo: '/games', pathMatch: 'full' },
   { path: 'publishers', component: PublisherComponent, children: [
       { path: '', component: PublisherStartComponent },
-      // { path: 'new', component: PublisherEditComponent },
-      { path: ':id', component: PublisherDetailComponent }
-      // { path: ':id/edit', component: PublisherEditComponent }
+      { path: 'new', component: PublisherEditComponent },
+      { path: ':id', component: PublisherDetailComponent },
+      { path: ':id/edit', component: PublisherEditComponent }
     ] },
   { path: 'games', component: GameComponent, children: [
       { path: '', component: GameStartComponent },

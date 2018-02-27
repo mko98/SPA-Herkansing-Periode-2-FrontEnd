@@ -24,6 +24,9 @@ import {GameService} from './game/game.service';
 import { GameItemComponent } from './game/game-list/game-item/game-item.component';
 import { PublisherItemComponent } from './publisher/publisher-list/publisher-item/publisher-item.component';
 import { GameEditComponent } from './game/game-edit/game-edit.component';
+import {PublisherService} from './publisher/publisher.service';
+import { PublisherEditComponent } from './publisher/publisher-edit/publisher-edit.component';
+import { GamePublisherItemComponent } from './game/game-publisher-item/game-publisher-item.component';
 
 
 @NgModule({
@@ -40,7 +43,9 @@ import { GameEditComponent } from './game/game-edit/game-edit.component';
     PublisherStartComponent,
     GameItemComponent,
     PublisherItemComponent,
-    GameEditComponent
+    GameEditComponent,
+    PublisherEditComponent,
+    GamePublisherItemComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +62,7 @@ import { GameEditComponent } from './game/game-edit/game-edit.component';
     BrowserAnimationsModule
 
   ],
-  providers: [GameService],
+  providers: [GameService, PublisherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

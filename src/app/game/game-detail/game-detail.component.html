@@ -29,23 +29,15 @@
         </div>
       </div>
 
-    <div class="col-xs-12" style="margin-top: 20px; margin-bottom: 10px;">
-      <div class="row">
-        <div class="col-xs-12">
-          <strong>Game Publishers:</strong><br>
-      </div>
-      <div style="margin-top: 10px;">
-        <app-publisher-item
-          *ngFor="let publisherEL of game.publishers"
-          [publisher]="publisherEL"
-          [gameId]="game._id"
-          [index]="i"
-          (userSelected)="onGameSelected(publisherEL)">
-        </app-publisher-item>
-      </div>
-    </div>
+          <app-game-publisher-item
+            *ngFor="let publisherEL of game.publishers"
+            [publisher]="publisherEL"
+            [gameId]="game._id"
+            [index]="i"
+            (userSelected)="onGameSelected(publisherEL)">
+          </app-game-publisher-item>
 
 
-
+</div>
   </div>
 </div>

@@ -130,7 +130,6 @@ export class GameService {
       });
   }
 
-
   private handleError(error: any): Promise<any> {
     console.log('handleError');
     return Promise.reject(error.message || error);

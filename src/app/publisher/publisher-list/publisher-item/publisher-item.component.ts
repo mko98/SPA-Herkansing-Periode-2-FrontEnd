@@ -1,9 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
-import {ActivatedRoute, Params, Router} from '@angular/router';
-import {Game} from '../../../game/game.model';
-import {GameService} from '../../../game/game.service';
-import {Publisher} from '../../publisher.model';
+import {Publisher} from '../../../publisher/publisher.model';
+import {PublisherService} from '../../../publisher/publisher.service';
 
 @Component({
   selector: 'app-publisher-item',
@@ -11,49 +9,25 @@ import {Publisher} from '../../publisher.model';
   styleUrls: ['./publisher-item.component.css']
 })
 export class PublisherItemComponent implements OnInit {
+
   @Input() publisher: Publisher;
   @Input() gameId: string;
-  @Input() index: number;
-  @Output() publisherSelected = new EventEmitter<void>();
-  game: Game = new Game({title: 'loading', imagePath: ''});
+  @Input() index: string;
+  @Input() publisherIndex: number;
   subscription: Subscription;
-  id: string;
-  private status;
 
-  constructor( private route: ActivatedRoute,
-               private gameService: GameService,
-               private router: Router) { }
+  constructor(private publisherService: PublisherService) {
+  }
 
   ngOnInit() {
-    this.route.params
+    this.subscription = this.publisherService.publisherChanged
       .subscribe(
-        (params: Params) => {
-          this.id = params['id'];
-          this.gameService.getGame(this.id).then(res => {
-            this.game = res;
-          });
+        (publishers: Publisher[]) => {
+          console.log('get friends aangeroepen.');
+          console.dir(publishers);
         }
       );
+    this.index = this.publisher._id;
 
-    this.subscription = this.gameService.sGameChanged
-      .subscribe(
-        (posts: Game) => {
-          this.gameService.getGame(this.id).then(res => {
-            console.log('log de publisher' + res.publisher);
-            this.game = res;
-            // this.postPublisherId = res.publisher;
-          });
-        });
   }
-
-
-
-  onSelected() {
-    this.publisherSelected.emit();
-  }
-
-  onDeletePublisher() {
-    this.gameService.deletePublisher(this.publisher._id, this.gameId);
-  }
-
 }

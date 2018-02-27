@@ -12,13 +12,12 @@ import {Publisher} from '../../publisher/publisher.model';
 })
 export class GameDetailComponent implements OnInit {
 
+  games: Game;
   game: Game = new Game({title: 'loading', imagePath: ''});
-  publisher: { name: string};
+  publisher: { publisherName: string};
   id: string;
   @Input() index: string;
   private subscription: Subscription;
-  status;
-
 
   constructor(private gameService: GameService,
               // private publisherService: PublisherService,
@@ -63,6 +62,5 @@ export class GameDetailComponent implements OnInit {
     console.log('click2');
     this.publisher = publisher;
     console.log(publisher);
-
   }
 }

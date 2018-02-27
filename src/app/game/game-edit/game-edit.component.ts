@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Publisher} from '../../publisher/publisher.model';
 import {Game} from '../game.model';
 import {GameService} from '../game.service';
+import {PublisherService} from '../../publisher/publisher.service';
 
 @Component({
   selector: 'app-game-edit',
@@ -12,7 +13,10 @@ import {GameService} from '../game.service';
   styleUrls: ['./game-edit.component.css']
 })
 export class GameEditComponent implements OnInit {
+  @Input() pub: Publisher;
+  @Input() index: string;
   id: string;
+  publisher: Publisher[];
   gameForm: FormGroup;
   idChar: string;
   editMode = false;
@@ -23,6 +27,7 @@ export class GameEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private gameService: GameService,
+              private publisherService: PublisherService,
               private router: Router) {
   }
 
@@ -40,6 +45,22 @@ export class GameEditComponent implements OnInit {
         (games: Game[]) => {
           console.log('get friends aangeroepen.');
           console.dir(games);
+        }
+      );
+
+    this.publisherService.getPublishers()
+      .then(res => {
+        this.publishers = res;
+      });
+    this.subscription = this.publisherService.publisherChanged
+      .subscribe(
+        (publishers: Publisher[]) => {
+          this.publisherService.getPublishers()
+            .then(res => {
+              this.publishers = res;
+            });
+          console.log('get publishers aangeroepen.');
+          console.dir(publishers);
         }
       );
   }
@@ -104,6 +125,7 @@ export class GameEditComponent implements OnInit {
             'title': new FormControl(editgame.title, Validators.required),
             'genre': new FormControl(editgame.genre, Validators.required),
             'engine': new FormControl(editgame.engine, Validators.required),
+            'publishers': new FormControl(editgame.publishers, Validators.required),
             // 'publishers': new FormControl(editgame.publishers)
           });
         })
@@ -112,8 +134,9 @@ export class GameEditComponent implements OnInit {
 
     this.gameForm = new FormGroup({
       'title': new FormControl('', Validators.required),
-      'genre': new FormControl(0, Validators.required),
-      'engine': new FormControl('', Validators.required)
+      'genre': new FormControl('', Validators.required),
+      'engine': new FormControl('', Validators.required),
+      'publishers': new FormControl('', Validators.required)
       // 'publishers': new FormArray([])
     });
   }
