@@ -1,9 +1,11 @@
+import {Publisher} from '../publisher/publisher.model';
+
 export class Game {
   private id: string;
   private _title: string;
   private _genre: string;
   private _engine: string;
-  private _publishers: [object];
+  private _publishers: Publisher;
 
 
   constructor(values: Object = {}) {
@@ -42,11 +44,11 @@ export class Game {
     this._engine = g;
   }
 
-  public get publishers() {
+  public get publishers(): Publisher {
     return this._publishers;
   }
 
-  public set publishers(n: [object]) {
+  public set publishers(n: Publisher) {
     this._publishers = n;
   }
 

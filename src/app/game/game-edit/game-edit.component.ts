@@ -103,33 +103,45 @@ export class GameEditComponent implements OnInit {
 
   private initForm() {
     let editgame = new Game({name: '', price: ''});
-
+    let editPublisher = new Publisher({publisherName: ''});
     // const GameCharacters = new FormArray([]);
 
     if (this.editMode) {
       this.gameService.getGame(this.id)
         .then(game => {
           editgame = game;
-          // if (game['characters']) {
-          //   for (const guest of game.characters) {
-          //     GameCharacters.push(
-          //       new FormGroup({
-          //         'name': new FormControl(guest.name, Validators.required),
-          //         'imagePath': new FormControl(guest.imagePath)
-          //       })
-          //     );
-          //
-          //   }
-          // }
+          if (editgame.publishers != null) {
+            this.publisherService.getPublisher(editgame.publishers[0]._id).then(publisher => {
+              editPublisher = publisher;
+              console.log(editPublisher);
+
+              this.gameForm = new FormGroup({
+                'title': new FormControl(editgame.title, Validators.required),
+                'genre': new FormControl(editgame.genre, Validators.required),
+                'engine': new FormControl(editgame.engine, Validators.required),
+                'publishers': new FormControl(editPublisher.publisherName, Validators.required),
+                // 'publishers': new FormControl(editgame.publishers)
+              });
+            });
+          }
+
           this.gameForm = new FormGroup({
             'title': new FormControl(editgame.title, Validators.required),
             'genre': new FormControl(editgame.genre, Validators.required),
             'engine': new FormControl(editgame.engine, Validators.required),
-            'publishers': new FormControl(editgame.publishers, Validators.required),
-            // 'publishers': new FormControl(editgame.publishers)
+            'publishers': new FormControl(editgame.publishers)
           });
         })
         .catch(error => console.log(error));
+    }
+
+    if (editgame.publishers != null) {
+      this.gameForm = new FormGroup({
+        'title': new FormControl('', Validators.required),
+        'genre': new FormControl('', Validators.required),
+        'engine': new FormControl('', Validators.required),
+        'publishers': new FormControl('', Validators.required)
+      });
     }
 
     this.gameForm = new FormGroup({
@@ -137,7 +149,6 @@ export class GameEditComponent implements OnInit {
       'genre': new FormControl('', Validators.required),
       'engine': new FormControl('', Validators.required),
       'publishers': new FormControl('', Validators.required)
-      // 'publishers': new FormArray([])
     });
   }
 
