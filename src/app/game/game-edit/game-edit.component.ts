@@ -18,12 +18,14 @@ export class GameEditComponent implements OnInit {
   id: string;
   publisher: Publisher[];
   gameForm: FormGroup;
+  publisherForm: FormGroup;
   idChar: string;
   editMode = false;
   selectedGenre: string;
   publishers: Publisher;
   game: Game;
   subscription: Subscription;
+  addPublisherVisible: boolean;
 
   constructor(private route: ActivatedRoute,
               private gameService: GameService,
@@ -63,6 +65,7 @@ export class GameEditComponent implements OnInit {
           console.dir(publishers);
         }
       );
+    this.addPublisherVisible = true;
   }
 
   onSubmit() {
@@ -83,22 +86,29 @@ export class GameEditComponent implements OnInit {
     this.onCancel();
   }
 
+  onAddPublisher() {
+    this.publisherService.addPublisher(this.publisherForm.value);
+    this.publisherService.getPublishers()
+      .then(publishers => {
+        this.publisherService.publisherChanged.next(publishers.slice());
+      });
 
-  // onAddCharacter() {
-  //   (<FormArray>this.gameForm.get('characters')).push(
-  //     new FormGroup({
-  //       'name': new FormControl(null, Validators.required),
-  //       'imagePath': new FormControl(null)
-  //     })
-  //   );
-  // }
-  //
-  // onDeleteCharacter(index: number) {
-  //   (<FormArray>this.gameForm.get('characters')).removeAt(index);
-  // }
+    this.publisherForm.reset();
+    this.addPublisherVisible = true;
+  }
+
+  onChangeAddPublisher() {
+    this.addPublisherVisible = false;
+    console.log(this.addPublisherVisible);
+  }
 
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
+  }
+
+  onCancelAddPublisher() {
+    this.addPublisherVisible = true;
+    this.publisherForm.reset();
   }
 
   private initForm() {
@@ -120,7 +130,6 @@ export class GameEditComponent implements OnInit {
                 'genre': new FormControl(editgame.genre, Validators.required),
                 'engine': new FormControl(editgame.engine, Validators.required),
                 'publishers': new FormControl(editPublisher.publisherName, Validators.required),
-                // 'publishers': new FormControl(editgame.publishers)
               });
             });
           }
@@ -135,14 +144,13 @@ export class GameEditComponent implements OnInit {
         .catch(error => console.log(error));
     }
 
-    if (editgame.publishers != null) {
-      this.gameForm = new FormGroup({
-        'title': new FormControl('', Validators.required),
-        'genre': new FormControl('', Validators.required),
-        'engine': new FormControl('', Validators.required),
-        'publishers': new FormControl('', Validators.required)
-      });
-    }
+    this.publisherForm = new FormGroup({
+      'publisherName': new FormControl('', Validators.required),
+      'founder': new FormControl('', Validators.required),
+      'ceo': new FormControl('', Validators.required)
+      // 'publishers': new FormArray([])
+    });
+
 
     this.gameForm = new FormGroup({
       'title': new FormControl('', Validators.required),
@@ -150,6 +158,9 @@ export class GameEditComponent implements OnInit {
       'engine': new FormControl('', Validators.required),
       'publishers': new FormControl('', Validators.required)
     });
+
+
   }
+
 
 }
