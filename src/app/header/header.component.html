@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <span>SPA Herkansing</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+</mat-toolbar>
+
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+     routerLink="/games"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+      games
+  </a>
+  <a mat-tab-link
+     routerLink="/publishers"
+     routerLinkActive #rlb="routerLinkActive"
+     [active]="rlb.isActive">
+    Publishers
+  </a>
+</nav>
+

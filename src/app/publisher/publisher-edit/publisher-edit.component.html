@@ -1,0 +1,48 @@
+<div class="row" style="margin-top: 20px;">
+  <div class="col-xs-12">
+    <form [formGroup]="publisherForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success itemStyle" [disabled]="!publisherForm.valid">Save</button>
+          <button type="button" class="btn btn-danger itemStyle " (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="publisherName">Name</label>
+            <input type="text" id="publisherName" formControlName="publisherName" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="founder">Founder</label>
+            <input type="texr" id="founder" formControlName="founder" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="ceo">CEO</label>
+            <input type="text" id="ceo" formControlName="ceo" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <!--<div class="row">-->
+      <!--<div class="col-xs-12">-->
+      <!--<div class="form-group">-->
+      <!--<label for="sportHall">SportHall</label>-->
+      <!--<input type="text" id="publishers" formControlName="sportHall" class="form-control">-->
+      <!--</div>-->
+      <!--</div>-->
+      <!--</div>-->
+
+    </form>
+  </div>
+</div>

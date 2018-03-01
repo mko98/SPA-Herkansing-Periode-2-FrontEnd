@@ -1,0 +1,50 @@
+<div class="itemStyle" style="margin-top: 30px;margin-bottom: 30px;">
+  <div class="row itemSpacing">
+    <div class="col-xs-12 bottomSpacing">
+
+      <mat-form-field>
+        <mat-select placeholder="Manage Publisher">
+          <mat-option (click)="onEditPublisher()"> Edit Publisher Information </mat-option>
+          <mat-option (click)="onDeletePublisher()"> Delete Publisher </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>{{ publisher.publisherName }}</h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>Founder: </strong>
+          {{ publisher.founder }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>CEO:</strong>
+          {{ publisher.ceo }}
+        </div>
+      </div>
+
+      <!--<div class="col-xs-12" style="margin-top: 20px; margin-bottom: 10px;">-->
+        <!--<div class="row">-->
+          <!--<div class="col-xs-12">-->
+            <!--<strong>Publisher Publishers:</strong><br>-->
+          <!--</div>-->
+          <!--<div style="margin-top: 10px;">-->
+            <!--<app-publisher-item-->
+              <!--*ngFor="let publisherEL of publisher.publishers"-->
+              <!--[publisher]="publisherEL"-->
+              <!--[publisherId]="publisher._id"-->
+              <!--[index]="i"-->
+              <!--(userSelected)="onPublisherSelected(publisherEL)">-->
+            <!--</app-publisher-item>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+  </div>
+</div>

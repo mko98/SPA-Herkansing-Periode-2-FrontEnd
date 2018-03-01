@@ -1,0 +1,111 @@
+<div class="row" style="margin-top: 20px;">
+  <div class="col-xs-12">
+    <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success itemStyle" [disabled]="!gameForm.valid">Save</button>
+          <button type="button" class="btn btn-danger itemStyle " (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" formControlName="title" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="genre">Genre</label>
+            <input type="texr" id="genre" formControlName="genre" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="engine">Engine</label>
+            <input type="text" id="engine" formControlName="engine" class="form-control">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="publishers">Selected Publisher</label>
+            <input type="text" id="publishers" formControlName="publishers" class="form-control">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="publishers">Publisher</label>
+        <mat-select placeholder="Select Publisher" type="text" id="publishers" formControlName="publishers" class="form-control">
+          <mat-option *ngFor="let publisherEL of publishers" [value]="publisherEL"> {{ publisherEL.publisherName}} </mat-option>
+        </mat-select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <button type="button" class="btn btn-success itemStyle" (click)="onChangeAddPublisher()" >Add Publisher</button>
+          </div>
+        </div>
+      </div>
+    </form>
+        <div class="col-xs-12">
+          <div class="form-group"
+               [hidden]="addPublisherVisible">
+            <form [formGroup]="publisherForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <label for="publisherName">Name</label>
+                    <input type="text" id="publisherName" formControlName="publisherName" class="form-control">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <label for="founder">Founder</label>
+                    <input type="texr" id="founder" formControlName="founder" class="form-control">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="form-group">
+                    <label for="ceo">CEO</label>
+                    <input type="text" id="ceo" formControlName="ceo" class="form-control">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12">
+                  <button type="button" (click)="onAddPublisher()" class="btn btn-success itemStyle" [disabled]="!publisherForm.valid">Save</button>
+                  <button type="button" class="btn btn-danger itemStyle " (click)="onCancelAddPublisher()">Cancel</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+
+
+  </div>
+</div>
