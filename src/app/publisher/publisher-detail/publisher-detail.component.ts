@@ -53,6 +53,7 @@ export class PublisherDetailComponent implements OnInit {
 
   onDeletePublisher() {
     console.log('delete');
+    this.router.navigate(['../'], {relativeTo: this.route});
     this.publisherService.deletePublisher(this.id);
   }
 
