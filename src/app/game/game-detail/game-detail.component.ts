@@ -55,6 +55,7 @@ export class GameDetailComponent implements OnInit {
 
   onDeleteGame() {
     console.log('delete');
+    this.router.navigate(['../'], {relativeTo: this.route});
     this.gameService.deleteGame(this.id);
   }
 
