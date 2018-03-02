@@ -111,6 +111,8 @@ export class GameService {
       .toPromise()
       .then(response => {
         this.gameChanged.next(this.games);
+        return response.json();
+
       });
   }
 
@@ -119,6 +121,7 @@ export class GameService {
       .toPromise()
       .then(response => {
         this.gameChanged.next(this.games);
+        return response.json();
       });
   }
 

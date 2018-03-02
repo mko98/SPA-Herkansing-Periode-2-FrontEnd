@@ -3,6 +3,7 @@ import {Subject} from 'rxjs/Subject';
 import {Publisher} from '../publisher/publisher.model';
 import {environment} from '../../environments/environment';
 import {Http} from '@angular/http';
+import {Game} from '../game/game.model';
 
 @Injectable()
 export class PublisherService {
@@ -45,37 +46,6 @@ export class PublisherService {
 
   }
 
-  // addPublisher(id: string, publisherId: string) {
-  //   console.log('addPublisher');
-  //   console.log('publisherId: ' + publisherId);
-  //   console.log('publisherId: ' + id);
-  //
-  //   return this.http.put(this.serverUrl + id + '/' + publisherId, null)
-  //     .toPromise()
-  //     .then(response => {
-  //       this.sPublisherChanged.next(this.publisher);
-  //       return response.json() as Publisher[];
-  //     })
-  //     .catch(error => {
-  //       return error;
-  //     });
-  // }
-
-  // deletePublisher(id: string) {
-  //   console.log('addPublisher');
-  //   console.log('publisherId: ' + id);
-  //
-  //   return this.http.delete(this.serverUrl + id )
-  //     .toPromise()
-  //     .then(response => {
-  //       this.sPublisherChanged.next(this.publisher);
-  //       return response.json() as Publisher;
-  //     })
-  //     .catch(error => {
-  //       return error;
-  //     });
-  // }
-
 
   addPublisher(publisher: Publisher) {
     return this.http.post(this.serverUrl, publisher)
@@ -98,6 +68,46 @@ export class PublisherService {
       .toPromise()
       .then(response => {
         this.publisherChanged.next(this.publishers.slice());
+      });
+  }
+
+  addPublisherGameRelationship(publisherId: String, gameId: String) {
+    return this.http.post(this.serverUrl + 'makeconnection' + '/' + publisherId + '/' + gameId, null)
+      .toPromise()
+      .then(response => {
+        this.publisherChanged.next(this.publishers);
+      });
+  }
+
+  removeGameRelationship(gameId: String) {
+    // return this.http.delete(this.serverUrl + 'deletegameconnection' + '/' + publisherId + '/' + gameId, null)
+    return this.http.delete(this.serverUrl + 'deletegameconnection' + '/' + gameId)
+      .toPromise()
+      .then(response => {
+      });
+  }
+
+  removePublisherRelationship(gameId: String) {
+    // return this.http.delete(this.serverUrl + 'deletegameconnection' + '/' + publisherId + '/' + gameId, null)
+    return this.http.delete(this.serverUrl + 'deletepublisherconnection' + '/' + gameId)
+      .toPromise()
+      .then(response => {
+      });
+  }
+
+  deletePublisherNeo(id: String) {
+    return this.http.delete(this.serverUrl + 'deletepublisher' + '/' + id)
+      .toPromise()
+      .then(response => {
+        return response.json();
+      });
+  }
+
+  deleteGameNeo(gameId: String) {
+    return this.http.delete(this.serverUrl + 'deleteGame' + '/' + gameId, null)
+      .toPromise()
+      .then(response => {
+        return response.json();
       });
   }
 

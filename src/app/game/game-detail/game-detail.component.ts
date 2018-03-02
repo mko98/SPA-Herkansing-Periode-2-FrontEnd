@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {Game} from '../game.model';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Publisher} from '../../publisher/publisher.model';
+import {PublisherService} from '../../publisher/publisher.service';
 
 @Component({
   selector: 'app-game-detail',
@@ -20,7 +21,7 @@ export class GameDetailComponent implements OnInit {
   private subscription: Subscription;
 
   constructor(private gameService: GameService,
-              // private publisherService: PublisherService,
+              private publisherService: PublisherService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -56,7 +57,14 @@ export class GameDetailComponent implements OnInit {
   onDeleteGame() {
     console.log('delete');
     this.router.navigate(['../'], {relativeTo: this.route});
-    this.gameService.deleteGame(this.id);
+    this.gameService.getGame(this.id)
+      .then(game => {
+        console.log('before delete game');
+        this.publisherService.deleteGameNeo(this.id);
+        console.log('after delete game');
+        // this.publisherService.removePublisherGameRelationship(game.publishers[0]._id, this.id);
+        this.gameService.deleteGame(this.id);
+      });
   }
 
   onGameSelected(publisher: Publisher) {

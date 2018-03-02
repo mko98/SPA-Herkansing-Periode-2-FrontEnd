@@ -51,10 +51,13 @@ export class GamePublisherItemComponent implements OnInit {
         });
   }
 
-
-
   onSelected() {
     this.publisherSelected.emit();
+  }
+
+  onPublisherClick() {
+    console.log('id:' + this.publisher._id);
+    this.router.navigate(['../../publishers', this.publisher._id], {relativeTo: this.route});
   }
 
   onDeletePublisher() {

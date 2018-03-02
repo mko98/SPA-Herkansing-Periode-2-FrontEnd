@@ -6,6 +6,7 @@ import {Publisher} from '../../publisher/publisher.model';
 import {Game} from '../game.model';
 import {GameService} from '../game.service';
 import {PublisherService} from '../../publisher/publisher.service';
+import {connectableObservableDescriptor} from 'rxjs/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-game-edit',
@@ -69,22 +70,31 @@ export class GameEditComponent implements OnInit {
   }
 
   onSubmit() {
-    // const newRecipe = new Recipe(
-    //   this.recipeForm.value['name'],
-    //   this.recipeForm.value['description'],
-    //   this.recipeForm.value['imagePath'],
-    //   this.recipeForm.value['ingredients']);
     if (this.editMode) {
-      this.gameService.updateGame(this.id, this.gameForm.value);
+      this.gameService.getGame(this.id)
+        .then(beforeGame => {
+          this.publisherService.removeGameRelationship(this.id).then(() => {
+            this.gameService.updateGame(this.id, this.gameForm.value);
+            this.publisherService.addPublisherGameRelationship(this.gameForm.value.publishers._id, this.id);
+          });
+      });
     } else {
-      this.gameService.addGame(this.gameForm.value);
+      this.gameService.addGame(this.gameForm.value)
+        .then(game => {
+          console.log('gameId adding game: ' + game._id);
+          console.log('publisherId adding game: ' + game.publishers);
+          this.publisherService.addPublisherGameRelationship(game.publishers, game._id);
+        });
+
+      }
       this.gameService.getGames()
         .then(games => {
           this.gameService.gameChanged.next(games.slice());
         });
-    }
     this.onCancel();
-  }
+    }
+
+
 
   onAddPublisher() {
     this.publisherService.addPublisher(this.publisherForm.value);

@@ -3,6 +3,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Publisher} from '../../publisher/publisher.model';
 import {PublisherService} from '../../publisher/publisher.service';
 import {Subscription} from 'rxjs/Subscription';
+import {GameService} from '../../game/game.service';
 
 @Component({
   selector: 'app-publisher-detail',
@@ -18,7 +19,7 @@ export class PublisherDetailComponent implements OnInit {
 
 
   constructor(private publisherService: PublisherService,
-              // private publisherService: PublisherService,
+              private gameService: GameService,
               private route: ActivatedRoute,
               private router: Router) {
   }
@@ -54,6 +55,7 @@ export class PublisherDetailComponent implements OnInit {
   onDeletePublisher() {
     console.log('delete');
     this.router.navigate(['../'], {relativeTo: this.route});
+    this.publisherService.deletePublisherNeo(this.id);
     this.publisherService.deletePublisher(this.id);
   }
 
