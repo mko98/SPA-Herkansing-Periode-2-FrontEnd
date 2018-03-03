@@ -1,9 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Publisher} from '../../publisher/publisher.model';
 import {PublisherService} from '../../publisher/publisher.service';
 import {Subscription} from 'rxjs/Subscription';
 import {GameService} from '../../game/game.service';
+import {Game} from '../../game/game.model';
+import {GameListComponent} from '../../game/game-list/game-list.component';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-publisher-detail',
@@ -14,6 +17,9 @@ export class PublisherDetailComponent implements OnInit {
 
   publisher: Publisher = new Publisher({publisherName: 'loading', imagePath: ''});
   id: string;
+  game: { title: string};
+
+  gamesName: Game[] = [];
   @Input() index: string;
   private subscription: Subscription;
 
@@ -32,8 +38,12 @@ export class PublisherDetailComponent implements OnInit {
           this.publisherService.getPublisher(this.id).then(res => {
             this.publisher = res;
           });
-        }
+          this.publisherService.getPublishedBy(this.id).then(response => {
+            console.log(response);
+            this.gamesName = response;
+          });
 
+        }
       );
     this.subscription = this.publisherService.publisherChanged
       .subscribe(
@@ -42,9 +52,11 @@ export class PublisherDetailComponent implements OnInit {
               this.publisher = res;
             }
           );
+
         });
 
   }
+
 
   onEditPublisher() {
     console.log(this.publisher);
@@ -59,10 +71,9 @@ export class PublisherDetailComponent implements OnInit {
     this.publisherService.deletePublisher(this.id);
   }
 
-  onPublisherSelected(publisher: Publisher) {
+  onPublisherSelected(game: Game) {
     console.log('click2');
-    this.publisher = publisher;
-    console.log(publisher);
-
+    this.game = game;
+    console.log(game);
   }
 }

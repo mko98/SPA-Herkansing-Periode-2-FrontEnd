@@ -27,6 +27,9 @@ import { GameEditComponent } from './game/game-edit/game-edit.component';
 import {PublisherService} from './publisher/publisher.service';
 import { PublisherEditComponent } from './publisher/publisher-edit/publisher-edit.component';
 import { GamePublisherItemComponent } from './game/game-publisher-item/game-publisher-item.component';
+import { PublisherGameItemComponent } from './publisher/publisher-game-item/publisher-game-item.component';
+import {Ng2CarouselamosModule} from 'ng2-carouselamos';
+
 
 
 @NgModule({
@@ -45,13 +48,15 @@ import { GamePublisherItemComponent } from './game/game-publisher-item/game-publ
     PublisherItemComponent,
     GameEditComponent,
     PublisherEditComponent,
-    GamePublisherItemComponent
+    GamePublisherItemComponent,
+    PublisherGameItemComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    Ng2CarouselamosModule,
     MatButtonModule,
     MatTabsModule,
     MatCheckboxModule,

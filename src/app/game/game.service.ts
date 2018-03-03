@@ -31,13 +31,14 @@ export class GameService {
       });
   }
 
-  getGame(index: string) {
-    if (index == null)
+  getGame(id: string) {
+    if (id == null)
       return null;
-    return this.http.get(this.serverUrl + index)
+    return this.http.get(this.serverUrl + id)
       .toPromise()
       .then(response => {
-        return response.json();
+        this.game = response.json() as Game;
+        return response.json() as Game;
       })
       .catch(error => {
         console.log(error);

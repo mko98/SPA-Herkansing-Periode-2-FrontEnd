@@ -9,10 +9,12 @@ import {Game} from '../game/game.model';
 export class PublisherService {
   publisherChanged = new Subject<Publisher[]>();
   sPublisherChanged = new Subject<Publisher>();
+  gameChanged = new Subject<Game[]>();
 
   private serverUrl = 'http://localhost:3000/api/v1/publishers/';
   private publishers: Publisher[];
   private publisher: Publisher;
+  private games: Game[];
   private serverPublisherUrl = environment.serverUrl + '/publishers/';
 
   constructor(private http: Http) {}
@@ -46,6 +48,19 @@ export class PublisherService {
 
   }
 
+  getPublishedBy(id: string) {
+    return this.http.get(environment.serverUrlChar + 'publishedby' + '/' + id)
+      .toPromise()
+      .then(response => {
+       this.games = response.json() as Game[];
+        return response.json() as Game[];
+      })
+      .catch(error => {
+        return error;
+      });
+
+  }
+
 
   addPublisher(publisher: Publisher) {
     return this.http.post(this.serverUrl, publisher)
@@ -71,7 +86,7 @@ export class PublisherService {
       });
   }
 
-  addPublisherGameRelationship(publisherId: String, gameId: String) {
+  addPublisherGameRelationship(publisherId: string, gameId: string) {
     return this.http.post(this.serverUrl + 'makeconnection' + '/' + publisherId + '/' + gameId, null)
       .toPromise()
       .then(response => {
@@ -79,7 +94,7 @@ export class PublisherService {
       });
   }
 
-  removeGameRelationship(gameId: String) {
+  removeGameRelationship(gameId: string) {
     // return this.http.delete(this.serverUrl + 'deletegameconnection' + '/' + publisherId + '/' + gameId, null)
     return this.http.delete(this.serverUrl + 'deletegameconnection' + '/' + gameId)
       .toPromise()
@@ -87,7 +102,7 @@ export class PublisherService {
       });
   }
 
-  removePublisherRelationship(gameId: String) {
+  removePublisherRelationship(gameId: string) {
     // return this.http.delete(this.serverUrl + 'deletegameconnection' + '/' + publisherId + '/' + gameId, null)
     return this.http.delete(this.serverUrl + 'deletepublisherconnection' + '/' + gameId)
       .toPromise()
@@ -95,7 +110,7 @@ export class PublisherService {
       });
   }
 
-  deletePublisherNeo(id: String) {
+  deletePublisherNeo(id: string) {
     return this.http.delete(this.serverUrl + 'deletepublisher' + '/' + id)
       .toPromise()
       .then(response => {
@@ -103,7 +118,7 @@ export class PublisherService {
       });
   }
 
-  deleteGameNeo(gameId: String) {
+  deleteGameNeo(gameId: string) {
     return this.http.delete(this.serverUrl + 'deleteGame' + '/' + gameId, null)
       .toPromise()
       .then(response => {

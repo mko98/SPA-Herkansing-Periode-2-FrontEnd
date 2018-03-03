@@ -10,7 +10,7 @@ import {Subscription} from 'rxjs/Subscription';
   templateUrl: './publisher-edit.component.html',
   styleUrls: ['./publisher-edit.component.css']
 })
-export class PublisherEditComponent implements OnInit {
+export class PublisherEditComponent implements OnInit{
   id: string;
   publisherForm: FormGroup;
   idChar: string;

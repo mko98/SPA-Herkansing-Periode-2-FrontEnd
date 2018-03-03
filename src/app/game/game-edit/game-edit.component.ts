@@ -20,10 +20,9 @@ export class GameEditComponent implements OnInit {
   publisher: Publisher[];
   gameForm: FormGroup;
   publisherForm: FormGroup;
-  idChar: string;
   editMode = false;
   selectedGenre: string;
-  publishers: Publisher;
+  publishers: Publisher[] = [];
   game: Game;
   subscription: Subscription;
   addPublisherVisible: boolean;
@@ -36,7 +35,6 @@ export class GameEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.idChar = params['charid'];
       this.id = params['id'];
       this.editMode = params['id'] != null;
       this.initForm();
@@ -108,7 +106,7 @@ export class GameEditComponent implements OnInit {
   }
 
   onChangeAddPublisher() {
-    this.addPublisherVisible = false;
+    this.addPublisherVisible = !this.addPublisherVisible;
     console.log(this.addPublisherVisible);
   }
 
@@ -123,31 +121,17 @@ export class GameEditComponent implements OnInit {
 
   private initForm() {
     let editgame = new Game({name: '', price: ''});
-    let editPublisher = new Publisher({publisherName: ''});
-    // const GameCharacters = new FormArray([]);
 
     if (this.editMode) {
       this.gameService.getGame(this.id)
         .then(game => {
           editgame = game;
-          if (editgame.publishers != null) {
-            this.publisherService.getPublisher(editgame.publishers[0]._id).then(publisher => {
-              editPublisher = publisher;
-              console.log(editPublisher);
-
-              this.gameForm = new FormGroup({
-                'title': new FormControl(editgame.title, Validators.required),
-                'genre': new FormControl(editgame.genre, Validators.required),
-                'engine': new FormControl(editgame.engine, Validators.required),
-                'publishers': new FormControl(editPublisher.publisherName, Validators.required),
-              });
-            });
-          }
 
           this.gameForm = new FormGroup({
             'title': new FormControl(editgame.title, Validators.required),
             'genre': new FormControl(editgame.genre, Validators.required),
             'engine': new FormControl(editgame.engine, Validators.required),
+            'imagePath': new FormControl(editgame.imagePath),
             'publishers': new FormControl(editgame.publishers)
           });
         })
@@ -166,6 +150,7 @@ export class GameEditComponent implements OnInit {
       'title': new FormControl('', Validators.required),
       'genre': new FormControl('', Validators.required),
       'engine': new FormControl('', Validators.required),
+      'imagePath': new FormControl(''),
       'publishers': new FormControl('', Validators.required)
     });
 

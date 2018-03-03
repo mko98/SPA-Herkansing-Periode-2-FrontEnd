@@ -34,23 +34,22 @@
         </div>
       </div>
 
-      <!--<div class="row">-->
-        <!--<div class="col-xs-12">-->
-          <!--<div class="form-group">-->
-            <!--<label for="publishers">Selected Publisher</label>-->
-            <!--<input type="text" id="publishers" formControlName="publishers" class="form-control">-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="imagePath">imagePath</label>
+            <input type="text" id="imagePath" formControlName="imagePath" class="form-control">
+          </div>
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
             <label for="publishers">Publisher</label>
-        <mat-select placeholder="Select Publisher" type="text" id="publishers" formControlName="publishers" class="form-control">
-          <mat-option *ngFor="let publisherEL of publishers" [value]="publisherEL"> {{ publisherEL.publisherName}} </mat-option>
-        </mat-select>
+            <mat-select placeholder="Select Publisher" type="text" id="publishers" formControlName="publishers" class="form-control">
+              <mat-option *ngFor="let publisherEL of publishers" [value]="publisherEL._id"> {{publisherEL.publisherName}} </mat-option>
+            </mat-select>
           </div>
         </div>
       </div>

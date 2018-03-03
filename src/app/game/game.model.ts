@@ -5,6 +5,7 @@ export class Game {
   private _title: string;
   private _genre: string;
   private _engine: string;
+  private _imagePath: string;
   private _publishers: Publisher;
 
 
@@ -42,6 +43,14 @@ export class Game {
 
   public set engine(g: string) {
     this._engine = g;
+  }
+
+  public get imagePath(): string {
+    return this._imagePath;
+  }
+
+  public set imagePath(i: string) {
+    this._imagePath = i;
   }
 
   public get publishers(): Publisher {

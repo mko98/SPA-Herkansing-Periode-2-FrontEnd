@@ -17,6 +17,15 @@
 
       <div class="row">
         <div class="col-xs-12">
+          <img
+            [src]="game.imagePath"
+            alt="Cover of the game"
+            style="max-height: 300px;">
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
           <strong>Genre: </strong>
           {{ game.genre }}
         </div>
@@ -29,7 +38,9 @@
         </div>
       </div>
 
-          <app-game-publisher-item
+
+
+      <app-game-publisher-item
             *ngFor="let publisherEL of game.publishers"
             [publisher]="publisherEL"
             [gameId]="game._id"

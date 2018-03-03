@@ -30,6 +30,20 @@
       </div>
 
 
+      <div class="row">
+        <div class="col-xs-12">
+      <strong>Games published:</strong>
+        </div>
+      </div>
+
+      <app-publisher-game-item
+        *ngFor="let gameEL of gamesName"
+        [game]="gameEL"
+        [publisherId]="gameEL.publishers._id"
+        [index]="i"
+        (userSelected)="onPublisherSelected(gameEL)">
+      </app-publisher-game-item>
+
 
     </div>
   </div>

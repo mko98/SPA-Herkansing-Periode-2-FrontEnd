@@ -6,6 +6,8 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Publisher} from '../../publisher/publisher.model';
 import {PublisherService} from '../../publisher/publisher.service';
 
+
+
 @Component({
   selector: 'app-game-detail',
   templateUrl: './game-detail.component.html',
@@ -26,7 +28,10 @@ export class GameDetailComponent implements OnInit {
               private router: Router) {
   }
 
+
+
   ngOnInit() {
+    console.log('caalled oninit');
     this.route.params
       .subscribe(
         (params: Params) => {
@@ -66,6 +71,7 @@ export class GameDetailComponent implements OnInit {
         this.gameService.deleteGame(this.id);
       });
   }
+
 
   onGameSelected(publisher: Publisher) {
     console.log('click2');
