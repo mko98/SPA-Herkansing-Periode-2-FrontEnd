@@ -46,6 +46,7 @@ export class UserLoginComponent implements OnInit {
           this.wrongLogin = true;
         } else {
           localStorage.setItem('userId', res._id);
+          console.log('localStorage: ' + localStorage.userId);
           this.router.navigate(['/games'], {relativeTo: this.route});
         }
       });

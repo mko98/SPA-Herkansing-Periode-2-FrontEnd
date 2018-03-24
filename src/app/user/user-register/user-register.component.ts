@@ -51,11 +51,17 @@ export class UserRegisterComponent implements OnInit {
   onVerify() {
     this.userService.userVerify(this.userRegisterForm.value)
       .then((res) => {
+        console.dir(res);
         if (res.status === 400) {
           this.wrongToken = false;
         } else {
-          localStorage.setItem('userId', res._id);
-          this.router.navigate(['/'], {relativeTo: this.route});
+          this.userService.userLogin(this.userRegisterForm.value).then((response) => {
+            console.log('userLogin');
+            console.dir(response);
+            localStorage.setItem('userId', response._id);
+            this.router.navigate(['/'], {relativeTo: this.route});
+          });
+
         }
       });
   }

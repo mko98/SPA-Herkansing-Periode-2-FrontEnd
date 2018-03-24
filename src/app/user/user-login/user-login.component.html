@@ -35,9 +35,9 @@
       <div class="row">
         <div class="col-xs-12">
           <button [hidden]="!verifyEmail" type="submit" class="btn btn-success itemStyle" [disabled]="!userLoginForm.valid">Sign in</button>
-          <button [hidden]="verifyEmail" (click)="onVerify() "class="btn btn-success itemStyle" [disabled]="!userLoginForm.valid">Verify and Login</button>
-          <button [hidden]="verifyEmail" (click)="onResendEmail()" class="btn btn-success itemStyle" [disabled]="!userLoginForm.valid">Resend Email</button>
-          <button (click)="onCancel()" class="btn btn-danger">Cancel</button>
+          <button [hidden]="verifyEmail" type="button" (click)="onVerify() "class="btn btn-success itemStyle" [disabled]="!userLoginForm.valid">Verify and Login</button>
+          <button [hidden]="verifyEmail" type="button" (click)="onResendEmail()" class="btn btn-success itemStyle" [disabled]="!userLoginForm.valid">Resend Email</button>
+          <button (click)="onCancel()" type="button" class="btn btn-danger">Cancel</button>
             <div class="col-xs-12" style="margin-top: 20px">
               <h5>No Account yet?</h5>
               <h5 (click)="onRegister()" class="underline">Click here to register</h5>

@@ -12,7 +12,7 @@ export class UserService {
 
 
   userRegister(user: User) {
-    return this.http.post(this.serverUrl + '/register', user)
+    return this.http.post(this.serverUrl + 'register', user)
       .toPromise()
       .then(response => {
         return response.json();
@@ -24,7 +24,7 @@ export class UserService {
   }
 
   userVerify(user: User) {
-    return this.http.post(this.serverUrl + '/verify', user)
+    return this.http.post(this.serverUrl + 'verify', user)
       .toPromise()
       .then(response => {
         return response.json();
@@ -36,7 +36,7 @@ export class UserService {
   }
 
   userLogin(user: User) {
-    return this.http.post(this.serverUrl + '/login', user)
+    return this.http.post(this.serverUrl + 'login', user)
       .toPromise()
       .then(response => {
         return response.json();
@@ -48,7 +48,7 @@ export class UserService {
   }
 
   resendVerifyEmail(user: User) {
-    return this.http.post(this.serverUrl + '/resendemail', user)
+    return this.http.post(this.serverUrl + 'resendemail', user)
       .toPromise()
       .then(response => {
         return response.json();

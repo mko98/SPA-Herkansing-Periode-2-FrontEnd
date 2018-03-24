@@ -45,6 +45,7 @@ export class PublisherEditComponent implements OnInit{
     if (this.editMode) {
       this.publisherService.updatePublisher(this.id, this.publisherForm.value);
     } else {
+      console.log(localStorage.userId);
       this.publisherService.addPublisher(this.publisherForm.value);
       this.publisherService.getPublishers()
         .then(publishers => {
@@ -68,7 +69,7 @@ export class PublisherEditComponent implements OnInit{
           this.publisherForm = new FormGroup({
             'publisherName': new FormControl(editpublisher.publisherName, Validators.required),
             'founder': new FormControl(editpublisher.founder, Validators.required),
-            'ceo': new FormControl(editpublisher.ceo, Validators.required),
+            'ceo': new FormControl(editpublisher.ceo, Validators.required)
           });
         })
         .catch(error => console.log(error));
