@@ -6,8 +6,6 @@ import {User} from './user.model';
 export class UserService {
 
   private serverUrl = 'http://localhost:3000/api/v1/';
-  private users: User[];
-  private user: User;
 
   constructor(private http: Http) {}
 
@@ -25,8 +23,32 @@ export class UserService {
       });
   }
 
+  userVerify(user: User) {
+    return this.http.post(this.serverUrl + '/verify', user)
+      .toPromise()
+      .then(response => {
+        return response.json();
+      })
+      .catch(error => {
+        console.log(error);
+        return error;
+      });
+  }
+
   userLogin(user: User) {
     return this.http.post(this.serverUrl + '/login', user)
+      .toPromise()
+      .then(response => {
+        return response.json();
+      })
+      .catch(error => {
+        console.log(error);
+        return error;
+      });
+  }
+
+  resendVerifyEmail(user: User) {
+    return this.http.post(this.serverUrl + '/resendemail', user)
       .toPromise()
       .then(response => {
         return response.json();

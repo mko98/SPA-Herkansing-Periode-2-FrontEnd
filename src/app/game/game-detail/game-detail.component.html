@@ -2,7 +2,7 @@
   <div class="row itemSpacing">
     <div class="col-xs-12 bottomSpacing">
 
-      <mat-form-field>
+      <mat-form-field *ngIf="userId == game.user">
         <mat-select placeholder="Manage Game">
           <mat-option (click)="onEditGame()"> Edit Game Information </mat-option>
           <mat-option (click)="onDeleteGame()"> Delete Game </mat-option>
@@ -37,7 +37,6 @@
           {{ game.engine }}
         </div>
       </div>
-
 
 
       <app-game-publisher-item

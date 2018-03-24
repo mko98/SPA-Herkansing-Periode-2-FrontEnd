@@ -1,8 +1,11 @@
+import {User} from '../user/user.model';
+
 export class Publisher {
   private id: string;
   private _publisherName: string;
   private _founder: string;
   private _ceo: string;
+  private _user: User;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
@@ -38,5 +41,13 @@ export class Publisher {
 
   public set ceo(n: string) {
     this._ceo = n;
+  }
+
+  public get user(): User {
+    return this._user;
+  }
+
+  public set user(n: User) {
+    this._user = n;
   }
 }

@@ -14,7 +14,6 @@ import {PublisherService} from '../../publisher/publisher.service';
   styleUrls: ['./game-detail.component.css']
 })
 export class GameDetailComponent implements OnInit {
-
   games: Game;
   game: Game = new Game({title: 'loading', imagePath: ''});
   publisher: { publisherName: string};
@@ -28,8 +27,6 @@ export class GameDetailComponent implements OnInit {
               private router: Router) {
   }
 
-
-
   ngOnInit() {
     console.log('caalled oninit');
     this.route.params
@@ -38,6 +35,7 @@ export class GameDetailComponent implements OnInit {
           this.id = params['id'];
           this.gameService.getGame(this.id).then(res => {
             this.game = res;
+            console.log('gameUser: ' + this.game.user);
           });
         }
 
@@ -50,13 +48,15 @@ export class GameDetailComponent implements OnInit {
             }
           );
         });
+  }
 
+  get userId(): any {
+    return localStorage.userId;
   }
 
   onEditGame() {
     console.log(this.game);
     this.router.navigate(['edit'], {relativeTo: this.route});
-    // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
   }
 
   onDeleteGame() {

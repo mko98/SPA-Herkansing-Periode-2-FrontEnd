@@ -8,6 +8,9 @@ import {PublisherStartComponent} from './publisher/publisher-start/publisher-sta
 import {PublisherDetailComponent} from './publisher/publisher-detail/publisher-detail.component';
 import {GameEditComponent} from './game/game-edit/game-edit.component';
 import {PublisherEditComponent} from './publisher/publisher-edit/publisher-edit.component';
+import {UserComponent} from './user/user.component';
+import {UserLoginComponent} from './user/user-login/user-login.component';
+import {UserRegisterComponent} from './user/user-register/user-register.component';
 
 const appRoutes: Routes = [
 
@@ -23,7 +26,11 @@ const appRoutes: Routes = [
       { path: 'new', component: GameEditComponent },
       { path: ':id', component: GameDetailComponent },
       { path: ':id/edit', component: GameEditComponent }
-    ] }
+    ] },
+  { path: 'user', component: UserComponent, children: [
+      { path: 'register', component: UserRegisterComponent },
+      { path: 'login', component: UserLoginComponent },
+    ]}
 ];
 
 @NgModule({

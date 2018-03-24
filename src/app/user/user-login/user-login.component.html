@@ -1,4 +1,4 @@
-<div class="row" style="margin-top: 20px;">
+<div style="margin-top: 20px;">
   <div class="col-md-12">
     <h1>Sign in: </h1>
   </div>
@@ -7,6 +7,9 @@
       <div class="row">
         <div class="col-xs-12">
           <h5 style="color: red" [hidden]="wrongLogin">Wrong email and/or password</h5>
+          <h5 style="color: red" [hidden]="verifyEmail">Please verify email first</h5>
+          <h5 style="color: red" [hidden]="wrongToken">Wrong verify token provided</h5>
+          <h5 [hidden]="emailResend">Verification Email resend</h5>
           <div class="form-group">
             <label for="email">Email</label>
             <input type="text" id="email" formControlName="email" class="form-control">
@@ -21,16 +24,26 @@
           </div>
         </div>
       </div>
+      <div [hidden]="verifyEmail" class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="emailVerifyToken">Email Token</label>
+            <input type="text" id="emailVerifyToken" formControlName="emailVerifyToken" class="form-control">
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-success itemStyle" [disabled]="!userLoginForm.valid">Sign in</button>
+          <button [hidden]="!verifyEmail" type="submit" class="btn btn-success itemStyle" [disabled]="!userLoginForm.valid">Sign in</button>
+          <button [hidden]="verifyEmail" (click)="onVerify() "class="btn btn-success itemStyle" [disabled]="!userLoginForm.valid">Verify and Login</button>
+          <button [hidden]="verifyEmail" (click)="onResendEmail()" class="btn btn-success itemStyle" [disabled]="!userLoginForm.valid">Resend Email</button>
+          <button (click)="onCancel()" class="btn btn-danger">Cancel</button>
             <div class="col-xs-12" style="margin-top: 20px">
               <h5>No Account yet?</h5>
-              <h5 routerLink="/register" class="underline">Click here to register</h5>
+              <h5 (click)="onRegister()" class="underline">Click here to register</h5>
             </div>
           </div>
         </div>
-
     </form>
   </div>
 </div>

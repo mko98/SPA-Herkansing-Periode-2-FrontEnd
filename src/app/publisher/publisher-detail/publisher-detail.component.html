@@ -2,7 +2,7 @@
   <div class="row itemSpacing">
     <div class="col-xs-12 bottomSpacing">
 
-      <mat-form-field>
+      <mat-form-field *ngIf="userId == publisher.user">
         <mat-select placeholder="Manage Publisher">
           <mat-option (click)="onEditPublisher()"> Edit Publisher Information </mat-option>
           <mat-option (click)="onDeletePublisher()"> Delete Publisher </mat-option>

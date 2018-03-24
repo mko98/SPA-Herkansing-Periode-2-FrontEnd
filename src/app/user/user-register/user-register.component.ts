@@ -12,6 +12,12 @@ export class UserRegisterComponent implements OnInit {
 
   id: string;
   userRegisterForm: FormGroup;
+  verify = true;
+  afterRegister = false;
+  wrongToken = true;
+  emailResend = true;
+  alreadyExists = true;
+  emailSend = true;
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,
@@ -22,8 +28,6 @@ export class UserRegisterComponent implements OnInit {
     this.userService.clearLocalStorage();
     this.route.params.subscribe((params: Params) => {
         this.initForm();
-        // this.gameService.getGame(this.id)
-        //   .then(games => this.game = games);
       }
     );
   }
@@ -31,19 +35,48 @@ export class UserRegisterComponent implements OnInit {
   onSubmit() {
     this.userService.userRegister(this.userRegisterForm.value)
       .then((res) => {
-        this.router.navigate(['/login'], {relativeTo: this.route});
+        if (res.status === 401) {
+          this.alreadyExists = false;
+        } else {
+          this.verify = false;
+          this.afterRegister = true;
+          this.alreadyExists = true;
+          this.emailSend = false;
+        }
+
       });
     console.log(localStorage);
   }
 
+  onVerify() {
+    this.userService.userVerify(this.userRegisterForm.value)
+      .then((res) => {
+        if (res.status === 400) {
+          this.wrongToken = false;
+        } else {
+          localStorage.setItem('userId', res._id);
+          this.router.navigate(['/'], {relativeTo: this.route});
+        }
+      });
+  }
+
+  onResendEmail() {
+    this.userService.resendVerifyEmail(this.userRegisterForm.value)
+      .then((res) => {
+        this.emailSend = true;
+        this.emailResend = false;
+      });
+  }
+
   onCancel() {
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigate(['/'], {relativeTo: this.route});
   }
 
   private initForm() {
     this.userRegisterForm = new FormGroup({
       'email': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.required)
+      'password': new FormControl('', Validators.required),
+      'emailVerifyToken': new FormControl('')
     });
   }
 

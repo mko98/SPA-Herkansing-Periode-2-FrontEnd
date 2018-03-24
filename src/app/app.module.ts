@@ -11,8 +11,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {
-  MatButtonModule, MatCheckboxModule, MatFormField, MatFormFieldModule, MatSelectModule, MatTabsModule, MatToolbarModule,
-  MatToolbarRow
+  MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatTabsModule, MatToolbarModule
 } from '@angular/material';
 import { HeaderComponent } from './header/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -28,8 +27,10 @@ import {PublisherService} from './publisher/publisher.service';
 import { PublisherEditComponent } from './publisher/publisher-edit/publisher-edit.component';
 import { GamePublisherItemComponent } from './game/game-publisher-item/game-publisher-item.component';
 import { PublisherGameItemComponent } from './publisher/publisher-game-item/publisher-game-item.component';
-import {Ng2CarouselamosModule} from 'ng2-carouselamos';
-
+import {UserRegisterComponent} from './user/user-register/user-register.component';
+import {UserComponent} from './user/user.component';
+import {UserLoginComponent} from './user/user-login/user-login.component';
+import {UserService} from './user/user.service';
 
 
 @NgModule({
@@ -39,6 +40,9 @@ import {Ng2CarouselamosModule} from 'ng2-carouselamos';
     GameListComponent,
     GameDetailComponent,
     GameStartComponent,
+    UserRegisterComponent,
+    UserComponent,
+    UserLoginComponent,
     HeaderComponent,
     PublisherComponent,
     PublisherDetailComponent,
@@ -56,7 +60,6 @@ import {Ng2CarouselamosModule} from 'ng2-carouselamos';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    Ng2CarouselamosModule,
     MatButtonModule,
     MatTabsModule,
     MatCheckboxModule,
@@ -67,7 +70,7 @@ import {Ng2CarouselamosModule} from 'ng2-carouselamos';
     BrowserAnimationsModule
 
   ],
-  providers: [GameService, PublisherService],
+  providers: [GameService, PublisherService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

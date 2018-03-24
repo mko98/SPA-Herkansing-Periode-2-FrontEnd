@@ -6,9 +6,13 @@
     <form [formGroup]="userRegisterForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-xs-12">
+          <h5 [hidden]="wrongToken" style="color: red" >Wrong verify token provided</h5>
+          <h5 [hidden]="emailResend" >Verification Email resend</h5>
+          <h5 [hidden]="emailSend" >Verification Email send</h5>
+          <h5 [hidden]="alreadyExists" style="color: red" >User already exists</h5>
           <div class="form-group">
-            <label for="email">Name</label>
-            <input type="text" id="email" formControlName="email" class="form-control">
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" class="form-control">
           </div>
         </div>
       </div>
@@ -20,11 +24,24 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div [hidden]="verify" class="row">
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-success itemStyle" [disabled]="!userRegisterForm.valid">Sign in</button>
+          <div class="form-group">
+            <label for="emailVerifyToken">Email Token</label>
+            <input type="text" id="emailVerifyToken" formControlName="emailVerifyToken" class="form-control">
+          </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button [hidden]="afterRegister" type="submit" class="btn btn-success itemStyle" [disabled]="!userRegisterForm.valid">Register</button>
+          <button [hidden]="verify" (click)="onVerify() "class="btn btn-success itemStyle" [disabled]="!userRegisterForm.valid">Verify and Login</button>
+          <button [hidden]="verify" (click)="onResendEmail()" class="btn btn-success itemStyle" [disabled]="!userRegisterForm.valid">Resend Email</button>
+          <button (click)="onCancel()" class="btn btn-danger">Cancel</button>
+        </div>
+      </div>
+
+
     </form>
   </div>
 </div>

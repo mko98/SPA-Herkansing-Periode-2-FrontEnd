@@ -33,10 +33,6 @@ export class GamePublisherItemComponent implements OnInit {
           this.gameService.getGame(this.id).then(res => {
             this.game = res;
           });
-          // this.status = this.gameService.checkIdInGame(this.id)
-          //   .then((res) => {
-          //     this.status = res;
-          //   });
         }
       );
 

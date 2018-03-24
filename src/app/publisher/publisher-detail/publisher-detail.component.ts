@@ -39,7 +39,7 @@ export class PublisherDetailComponent implements OnInit {
             this.publisher = res;
           });
           this.publisherService.getPublishedBy(this.id).then(response => {
-            console.log(response);
+            console.log('resp: ' + response);
             this.gamesName = response;
           });
 
@@ -54,9 +54,11 @@ export class PublisherDetailComponent implements OnInit {
           );
 
         });
-
   }
 
+  get userId(): any {
+    return localStorage.userId;
+  }
 
   onEditPublisher() {
     console.log(this.publisher);

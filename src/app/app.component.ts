@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 
 
 @Component({
@@ -8,6 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   loadedFeature = 'game';
+
+  @HostListener('window:unload')
+  private onUnload(): void {
+    localStorage.clear();
+  }
 
   onNavigate(feature: string) {
     this.loadedFeature = feature;

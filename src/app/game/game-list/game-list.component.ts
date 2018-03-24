@@ -13,6 +13,8 @@ export class GameListComponent implements OnInit {
 
   games: Game[];
   subscription: Subscription;
+  isLoggedIn: boolean;
+
 
   constructor(private gameService: GameService,
               private router: Router,
@@ -35,18 +37,21 @@ export class GameListComponent implements OnInit {
           console.dir(games);
         }
       );
+    this.isLoggedIn = localStorage.userId === undefined;
+  }
+
+  onLogout() {
+    localStorage.clear();
+    this.ngOnInit();
+  }
+
+  onLogin() {
+    this.router.navigate(['../user/login'], {relativeTo: this.route});
+
   }
 
   onNewGame() {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
-  // onGenre() {
-  //   this.router.navigate(['/genre/' + this.game.genre], {relativeTo: this.route});
-  //   // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
-  // }
-
-  // ngOnDestroy() {
-  //   this.subscription.unsubscribe();
-  // }
 }

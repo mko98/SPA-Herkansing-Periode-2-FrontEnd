@@ -1,4 +1,5 @@
 import {Publisher} from '../publisher/publisher.model';
+import {User} from '../user/user.model';
 
 export class Game {
   private id: string;
@@ -7,7 +8,7 @@ export class Game {
   private _engine: string;
   private _imagePath: string;
   private _publishers: Publisher;
-
+  private _user: User;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
@@ -59,6 +60,14 @@ export class Game {
 
   public set publishers(n: Publisher) {
     this._publishers = n;
+  }
+
+  public get user(): User {
+    return this._user;
+  }
+
+  public set user(n: User) {
+    this._user = n;
   }
 
 }

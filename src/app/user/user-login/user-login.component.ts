@@ -13,7 +13,10 @@ export class UserLoginComponent implements OnInit {
 
   id: string;
   userLoginForm: FormGroup;
-  wrongLogin: Boolean = true;
+  wrongLogin = true;
+  verifyEmail = true;
+  wrongToken = true;
+  emailResend = true;
 
   constructor(private route: ActivatedRoute,
               private userService: UserService,
@@ -38,6 +41,9 @@ export class UserLoginComponent implements OnInit {
         if (res.status === 401) {
           this.wrongLogin = false;
           this.router.navigate(['/login'], {relativeTo: this.route});
+        } else if (res.isVerified !== true) {
+          this.verifyEmail = false;
+          this.wrongLogin = true;
         } else {
           localStorage.setItem('userId', res._id);
           this.router.navigate(['/games'], {relativeTo: this.route});
@@ -46,14 +52,43 @@ export class UserLoginComponent implements OnInit {
     console.log(localStorage);
   }
 
+  onRegister() {
+    this.router.navigate(['../register'], {relativeTo: this.route});
+
+  }
+
   onCancel() {
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigate(['/'], {relativeTo: this.route});
+  }
+
+  onVerify() {
+    this.userService.userVerify(this.userLoginForm.value)
+      .then((res) => {
+        if (res.status === 400) {
+          this.wrongToken = false;
+          this.wrongLogin = true;
+        } else if(res.status === 401) {
+          this.wrongLogin = false;
+        } else {
+          this.wrongLogin = false;
+          localStorage.setItem('userId', res._id);
+          this.router.navigate(['/'], {relativeTo: this.route});
+        }
+      });
+  }
+
+  onResendEmail() {
+    this.userService.resendVerifyEmail(this.userLoginForm.value)
+      .then((res) => {
+        this.emailResend = false;
+      });
   }
 
   private initForm() {
     this.userLoginForm = new FormGroup({
       'email': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.required)
+      'password': new FormControl('', Validators.required),
+      'emailVerifyToken': new FormControl('')
     });
   }
 

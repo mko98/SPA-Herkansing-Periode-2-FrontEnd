@@ -19,7 +19,6 @@ export class PublisherGameItemComponent implements OnInit {
   publisher: Publisher = new Publisher({publisherName: 'loading'});
   subscription: Subscription;
   id: string;
-  private status;
 
 
   constructor( private route: ActivatedRoute,
@@ -34,10 +33,6 @@ export class PublisherGameItemComponent implements OnInit {
           this.publisherService.getPublisher(this.id).then(res => {
             this.publisher = res;
           });
-          // this.status = this.gameService.checkIdInGame(this.id)
-          //   .then((res) => {
-          //     this.status = res;
-          //   });
         }
       );
 
@@ -60,10 +55,6 @@ export class PublisherGameItemComponent implements OnInit {
     console.log('id:' + this.game._id);
     this.router.navigate(['../../games', this.game._id], {relativeTo: this.route});
   }
-
-  // onDeletePublisher() {
-  //   this.publisherService.deletePublisher(this.game._id, this.publisherId);
-  // }
 
 }
 

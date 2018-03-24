@@ -30,8 +30,6 @@ export class PublisherEditComponent implements OnInit{
       this.id = params['id'];
       this.editMode = params['id'] != null;
       this.initForm();
-      // this.publisherService.getPublisher(this.id)
-      //   .then(publishers => this.publisher = publishers);
     });
     this.subscription = this.publisherService.publisherChanged
       .subscribe(
@@ -43,11 +41,7 @@ export class PublisherEditComponent implements OnInit{
   }
 
   onSubmit() {
-    // const newRecipe = new Recipe(
-    //   this.recipeForm.value['name'],
-    //   this.recipeForm.value['description'],
-    //   this.recipeForm.value['imagePath'],
-    //   this.recipeForm.value['ingredients']);
+
     if (this.editMode) {
       this.publisherService.updatePublisher(this.id, this.publisherForm.value);
     } else {
@@ -61,48 +55,20 @@ export class PublisherEditComponent implements OnInit{
   }
 
 
-  // onAddCharacter() {
-  //   (<FormArray>this.publisherForm.get('characters')).push(
-  //     new FormGroup({
-  //       'name': new FormControl(null, Validators.required),
-  //       'imagePath': new FormControl(null)
-  //     })
-  //   );
-  // }
-  //
-  // onDeleteCharacter(index: number) {
-  //   (<FormArray>this.publisherForm.get('characters')).removeAt(index);
-  // }
-
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
   }
 
   private initForm() {
-    let editpublisher = new Publisher({name: '', price: ''});
-
-    // const PublisherCharacters = new FormArray([]);
+    const editpublisher = new Publisher({name: '', price: ''});
 
     if (this.editMode) {
       this.publisherService.getPublisher(this.id)
         .then(publisher => {
-          editpublisher = publisher;
-          // if (publisher['characters']) {
-          //   for (const guest of publisher.characters) {
-          //     PublisherCharacters.push(
-          //       new FormGroup({
-          //         'name': new FormControl(guest.name, Validators.required),
-          //         'imagePath': new FormControl(guest.imagePath)
-          //       })
-          //     );
-          //
-          //   }
-          // }
           this.publisherForm = new FormGroup({
             'publisherName': new FormControl(editpublisher.publisherName, Validators.required),
             'founder': new FormControl(editpublisher.founder, Validators.required),
             'ceo': new FormControl(editpublisher.ceo, Validators.required),
-            // 'publishers': new FormControl(editpublisher.publishers)
           });
         })
         .catch(error => console.log(error));
@@ -111,8 +77,8 @@ export class PublisherEditComponent implements OnInit{
     this.publisherForm = new FormGroup({
       'publisherName': new FormControl('', Validators.required),
       'founder': new FormControl('', Validators.required),
-      'ceo': new FormControl('', Validators.required)
-      // 'publishers': new FormArray([])
+      'ceo': new FormControl('', Validators.required),
+      'user': new FormControl(localStorage.userId)
     });
   }
 

@@ -72,8 +72,10 @@ export class GameEditComponent implements OnInit {
       this.gameService.getGame(this.id)
         .then(beforeGame => {
           this.publisherService.removeGameRelationship(this.id).then(() => {
+            console.log('gameformid: ' + this.gameForm.value.publishers);
+            console.log('gamid: ' +this.id);
             this.gameService.updateGame(this.id, this.gameForm.value);
-            this.publisherService.addPublisherGameRelationship(this.gameForm.value.publishers._id, this.id);
+            this.publisherService.addPublisherGameRelationship(this.gameForm.value.publishers, this.id);
           });
       });
     } else {
@@ -91,7 +93,6 @@ export class GameEditComponent implements OnInit {
         });
     this.onCancel();
     }
-
 
 
   onAddPublisher() {
@@ -141,7 +142,8 @@ export class GameEditComponent implements OnInit {
     this.publisherForm = new FormGroup({
       'publisherName': new FormControl('', Validators.required),
       'founder': new FormControl('', Validators.required),
-      'ceo': new FormControl('', Validators.required)
+      'ceo': new FormControl('', Validators.required),
+      'user': new FormControl(localStorage.userId)
       // 'publishers': new FormArray([])
     });
 
@@ -151,7 +153,8 @@ export class GameEditComponent implements OnInit {
       'genre': new FormControl('', Validators.required),
       'engine': new FormControl('', Validators.required),
       'imagePath': new FormControl(''),
-      'publishers': new FormControl('', Validators.required)
+      'publishers': new FormControl('', Validators.required),
+      'user': new FormControl(localStorage.userId)
     });
 
 

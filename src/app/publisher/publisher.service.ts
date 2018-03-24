@@ -9,13 +9,10 @@ import {Game} from '../game/game.model';
 export class PublisherService {
   publisherChanged = new Subject<Publisher[]>();
   sPublisherChanged = new Subject<Publisher>();
-  gameChanged = new Subject<Game[]>();
 
   private serverUrl = 'http://localhost:3000/api/v1/publishers/';
   private publishers: Publisher[];
-  private publisher: Publisher;
   private games: Game[];
-  private serverPublisherUrl = environment.serverUrl + '/publishers/';
 
   constructor(private http: Http) {}
 
@@ -52,6 +49,8 @@ export class PublisherService {
     return this.http.get(environment.serverUrlChar + 'publishedby' + '/' + id)
       .toPromise()
       .then(response => {
+        console.log('id resp: ' + id);
+        console.log('resp serv: ' + response.json());
        this.games = response.json() as Game[];
         return response.json() as Game[];
       })
@@ -103,7 +102,6 @@ export class PublisherService {
   }
 
   removePublisherRelationship(gameId: string) {
-    // return this.http.delete(this.serverUrl + 'deletegameconnection' + '/' + publisherId + '/' + gameId, null)
     return this.http.delete(this.serverUrl + 'deletepublisherconnection' + '/' + gameId)
       .toPromise()
       .then(response => {

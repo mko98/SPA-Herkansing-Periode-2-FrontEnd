@@ -13,6 +13,7 @@ export class PublisherListComponent implements OnInit {
 
   publishers: Publisher[];
   subscription: Subscription;
+  isLoggedIn: boolean;
 
   constructor(private publisherService: PublisherService,
               private router: Router,
@@ -35,18 +36,25 @@ export class PublisherListComponent implements OnInit {
           console.dir(publishers);
         }
       );
+
+    this.isLoggedIn = localStorage.userId === undefined;
+    console.log(localStorage.userId);
+    console.log(this.isLoggedIn);
+  }
+
+  onLogout() {
+    localStorage.clear();
+    this.router.navigate(['../games'], {relativeTo: this.route});
+
+  }
+
+  onLogin() {
+    this.router.navigate(['../user/login'], {relativeTo: this.route});
+
   }
 
   onNewPublisher() {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
-  // onGenre() {
-  //   this.router.navigate(['/genre/' + this.publisher.genre], {relativeTo: this.route});
-  //   // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
-  // }
-
-  // ngOnDestroy() {
-  //   this.subscription.unsubscribe();
-  // }
 }
