@@ -38,6 +38,13 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>Release date:</strong>
+          {{ game.releaseDate | date:'dd/MM/yyyy'}}
+        </div>
+      </div>
+
 
       <app-game-publisher-item
             *ngFor="let publisherEL of game.publishers"

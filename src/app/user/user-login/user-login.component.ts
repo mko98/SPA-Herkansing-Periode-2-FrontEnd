@@ -27,8 +27,6 @@ export class UserLoginComponent implements OnInit {
     this.userService.clearLocalStorage();
     this.route.params.subscribe((params: Params) => {
         this.initForm();
-        // this.gameService.getGame(this.id)
-        //   .then(games => this.game = games);
       }
     );
   }
@@ -65,6 +63,7 @@ export class UserLoginComponent implements OnInit {
   onVerify() {
     this.userService.userVerify(this.userLoginForm.value)
       .then((res) => {
+        console.log(res.status);
         if (res.status === 400) {
           this.wrongToken = false;
           this.wrongLogin = true;
@@ -87,9 +86,9 @@ export class UserLoginComponent implements OnInit {
 
   private initForm() {
     this.userLoginForm = new FormGroup({
-      'email': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.required),
-      'emailVerifyToken': new FormControl('')
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+      emailVerifyToken: new FormControl('')
     });
   }
 

@@ -11,7 +11,11 @@ import {AppRoutingModule} from './app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {
-  MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatTabsModule, MatToolbarModule
+  MAT_DATE_LOCALE,
+  MatButtonModule, MatCheckboxModule, MatDatepicker, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule,
+  MatSelectModule,
+  MatTabsModule,
+  MatToolbarModule
 } from '@angular/material';
 import { HeaderComponent } from './header/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -31,7 +35,6 @@ import {UserRegisterComponent} from './user/user-register/user-register.componen
 import {UserComponent} from './user/user.component';
 import {UserLoginComponent} from './user/user-login/user-login.component';
 import {UserService} from './user/user.service';
-
 
 @NgModule({
   declarations: [
@@ -61,6 +64,9 @@ import {UserService} from './user/user.service';
     ReactiveFormsModule,
     HttpModule,
     MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
     MatTabsModule,
     MatCheckboxModule,
     MatToolbarModule,

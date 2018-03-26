@@ -120,6 +120,10 @@ export class GameEditComponent implements OnInit {
     this.publisherForm.reset();
   }
 
+  comparePublisher(c1: Publisher, c2: Publisher): boolean {
+    return c1 && c2 ? c1._id === c2._id : c1 === c2;
+  }
+
   private initForm() {
     let editgame = new Game({name: '', price: ''});
 
@@ -129,32 +133,36 @@ export class GameEditComponent implements OnInit {
           editgame = game;
 
           this.gameForm = new FormGroup({
-            'title': new FormControl(editgame.title, Validators.required),
-            'genre': new FormControl(editgame.genre, Validators.required),
-            'engine': new FormControl(editgame.engine, Validators.required),
-            'imagePath': new FormControl(editgame.imagePath),
-            'publishers': new FormControl(editgame.publishers)
+            title: new FormControl(editgame.title, Validators.required),
+            genre: new FormControl(editgame.genre, Validators.required),
+            engine: new FormControl(editgame.engine, Validators.required),
+            imagePath: new FormControl(editgame.imagePath),
+            website: new FormControl(editgame.website),
+            releaseDate: new FormControl(editgame.releaseDate),
+            publishers: new FormControl(editgame.publishers)
           });
         })
         .catch(error => console.log(error));
     }
 
     this.publisherForm = new FormGroup({
-      'publisherName': new FormControl('', Validators.required),
-      'founder': new FormControl('', Validators.required),
-      'ceo': new FormControl('', Validators.required),
-      'user': new FormControl(localStorage.userId)
+      publisherName: new FormControl('', Validators.required),
+      founder: new FormControl('', Validators.required),
+      ceo: new FormControl('', Validators.required),
+      user: new FormControl(localStorage.userId)
       // 'publishers': new FormArray([])
     });
 
 
     this.gameForm = new FormGroup({
-      'title': new FormControl('', Validators.required),
-      'genre': new FormControl('', Validators.required),
-      'engine': new FormControl('', Validators.required),
-      'imagePath': new FormControl(''),
-      'publishers': new FormControl('', Validators.required),
-      'user': new FormControl(localStorage.userId)
+      title: new FormControl('', Validators.required),
+      genre: new FormControl('', Validators.required),
+      engine: new FormControl('', Validators.required),
+      imagePath: new FormControl(''),
+      website: new FormControl(editgame.website),
+      releaseDate: new FormControl(editgame.releaseDate),
+      publishers: new FormControl('', Validators.required),
+      user: new FormControl(localStorage.userId)
     });
 
 

@@ -33,6 +33,8 @@ export class UserRegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.userRegisterForm.value);
+    console.log(this.userRegisterForm.controls);
     this.userService.userRegister(this.userRegisterForm.value)
       .then((res) => {
         if (res.status === 401) {
@@ -47,6 +49,7 @@ export class UserRegisterComponent implements OnInit {
       });
     console.log(localStorage);
   }
+
 
   onVerify() {
     this.userService.userVerify(this.userRegisterForm.value)
@@ -80,9 +83,9 @@ export class UserRegisterComponent implements OnInit {
 
   private initForm() {
     this.userRegisterForm = new FormGroup({
-      'email': new FormControl('', Validators.required),
-      'password': new FormControl('', Validators.required),
-      'emailVerifyToken': new FormControl('')
+      email: new FormControl('', [Validators.required, Validators.pattern('^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$')]),
+      password: new FormControl('', [Validators.required, Validators.pattern('(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$')]),
+      emailVerifyToken: new FormControl('')
     });
   }
 

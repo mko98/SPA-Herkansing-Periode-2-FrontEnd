@@ -5,6 +5,7 @@ import {Game} from '../game.model';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Publisher} from '../../publisher/publisher.model';
 import {PublisherService} from '../../publisher/publisher.service';
+import {DateAdapter} from '@angular/material';
 
 
 
@@ -24,7 +25,8 @@ export class GameDetailComponent implements OnInit {
   constructor(private gameService: GameService,
               private publisherService: PublisherService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private adapter: DateAdapter<any>) {
   }
 
   ngOnInit() {
@@ -48,6 +50,7 @@ export class GameDetailComponent implements OnInit {
             }
           );
         });
+    this.adapter.setLocale('nl');
   }
 
   get userId(): any {

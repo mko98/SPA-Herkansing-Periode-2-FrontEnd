@@ -7,6 +7,8 @@ export class Game {
   private _genre: string;
   private _engine: string;
   private _imagePath: string;
+  private _website: string;
+  private _releaseDate: Date;
   private _publishers: Publisher;
   private _user: User;
 
@@ -52,6 +54,22 @@ export class Game {
 
   public set imagePath(i: string) {
     this._imagePath = i;
+  }
+
+  public get website(): string {
+    return this._website;
+  }
+
+  public set website(i: string) {
+    this._website = i;
+  }
+
+  public get releaseDate(): Date {
+    return this._releaseDate;
+  }
+
+  public set releaseDate(i: Date) {
+    this._releaseDate = i;
   }
 
   public get publishers(): Publisher {

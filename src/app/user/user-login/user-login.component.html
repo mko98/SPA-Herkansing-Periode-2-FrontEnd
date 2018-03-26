@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-xs-12">
           <h5 style="color: red" [hidden]="wrongLogin">Wrong email and/or password</h5>
-          <h5 style="color: red" [hidden]="verifyEmail">Please verify email first</h5>
+          <h5 [hidden]="verifyEmail">Please verify email first</h5>
           <h5 style="color: red" [hidden]="wrongToken">Wrong verify token provided</h5>
           <h5 [hidden]="emailResend">Verification Email resend</h5>
           <div class="form-group">
@@ -34,7 +34,7 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button [hidden]="!verifyEmail" type="submit" class="btn btn-success itemStyle" [disabled]="!userLoginForm.valid">Sign in</button>
+          <button [hidden]="!verifyEmail" type="submit" class="btn btn-success itemStyle">Sign in</button>
           <button [hidden]="verifyEmail" type="button" (click)="onVerify() "class="btn btn-success itemStyle" [disabled]="!userLoginForm.valid">Verify and Login</button>
           <button [hidden]="verifyEmail" type="button" (click)="onResendEmail()" class="btn btn-success itemStyle" [disabled]="!userLoginForm.valid">Resend Email</button>
           <button (click)="onCancel()" type="button" class="btn btn-danger">Cancel</button>
