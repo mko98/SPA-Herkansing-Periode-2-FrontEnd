@@ -120,10 +120,6 @@ export class GameEditComponent implements OnInit {
     this.publisherForm.reset();
   }
 
-  comparePublisher(c1: Publisher, c2: Publisher): boolean {
-    return c1 && c2 ? c1._id === c2._id : c1 === c2;
-  }
-
   private initForm() {
     let editgame = new Game({name: '', price: ''});
 
@@ -136,10 +132,10 @@ export class GameEditComponent implements OnInit {
             title: new FormControl(editgame.title, Validators.required),
             genre: new FormControl(editgame.genre, Validators.required),
             engine: new FormControl(editgame.engine, Validators.required),
-            imagePath: new FormControl(editgame.imagePath),
-            website: new FormControl(editgame.website),
-            releaseDate: new FormControl(editgame.releaseDate),
-            publishers: new FormControl(editgame.publishers)
+            imagePath: new FormControl(editgame.imagePath, Validators.required),
+            website: new FormControl(editgame.website, Validators.required),
+            releaseDate: new FormControl(editgame.releaseDate, Validators.required),
+            publishers: new FormControl(editgame.publishers, Validators.required)
           });
         })
         .catch(error => console.log(error));
@@ -149,8 +145,9 @@ export class GameEditComponent implements OnInit {
       publisherName: new FormControl('', Validators.required),
       founder: new FormControl('', Validators.required),
       ceo: new FormControl('', Validators.required),
-      user: new FormControl(localStorage.userId)
-      // 'publishers': new FormArray([])
+      website: new FormControl('', Validators.required),
+      yearFounded: new FormControl('', Validators.required),
+      user: new FormControl(localStorage.userId),
     });
 
 
@@ -158,9 +155,9 @@ export class GameEditComponent implements OnInit {
       title: new FormControl('', Validators.required),
       genre: new FormControl('', Validators.required),
       engine: new FormControl('', Validators.required),
-      imagePath: new FormControl(''),
-      website: new FormControl(editgame.website),
-      releaseDate: new FormControl(editgame.releaseDate),
+      imagePath: new FormControl('', Validators.required),
+      website: new FormControl('', Validators.required),
+      releaseDate: new FormControl('', Validators.required),
       publishers: new FormControl('', Validators.required),
       user: new FormControl(localStorage.userId)
     });

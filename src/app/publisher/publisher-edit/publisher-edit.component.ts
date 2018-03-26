@@ -67,19 +67,23 @@ export class PublisherEditComponent implements OnInit{
       this.publisherService.getPublisher(this.id)
         .then(publisher => {
           this.publisherForm = new FormGroup({
-            'publisherName': new FormControl(editpublisher.publisherName, Validators.required),
-            'founder': new FormControl(editpublisher.founder, Validators.required),
-            'ceo': new FormControl(editpublisher.ceo, Validators.required)
+            publisherName: new FormControl(editpublisher.publisherName, Validators.required),
+            founder: new FormControl(editpublisher.founder, Validators.required),
+            ceo: new FormControl(editpublisher.ceo, Validators.required),
+            website: new FormControl(editpublisher.website, Validators.required),
+            yearFounded: new FormControl(editpublisher.yearFounded, Validators.required),
           });
         })
         .catch(error => console.log(error));
     }
 
     this.publisherForm = new FormGroup({
-      'publisherName': new FormControl('', Validators.required),
-      'founder': new FormControl('', Validators.required),
-      'ceo': new FormControl('', Validators.required),
-      'user': new FormControl(localStorage.userId)
+      publisherName: new FormControl('', Validators.required),
+      founder: new FormControl('', Validators.required),
+      ceo: new FormControl('', Validators.required),
+      website: new FormControl('', Validators.required),
+      yearFounded: new FormControl('', Validators.required),
+      user: new FormControl(localStorage.userId),
     });
   }
 

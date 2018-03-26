@@ -5,6 +5,8 @@ export class Publisher {
   private _publisherName: string;
   private _founder: string;
   private _ceo: string;
+  private _website: string;
+  private _yearFounded: Date;
   private _user: User;
 
   constructor(values: Object = {}) {
@@ -41,6 +43,22 @@ export class Publisher {
 
   public set ceo(n: string) {
     this._ceo = n;
+  }
+
+  public get website(): string {
+    return this._website;
+  }
+
+  public set website(i: string) {
+    this._website = i;
+  }
+
+  public get yearFounded(): Date {
+    return this._yearFounded;
+  }
+
+  public set yearFounded(i: Date) {
+    this._yearFounded = i;
   }
 
   public get user(): User {
