@@ -132,9 +132,10 @@ export class GameEditComponent implements OnInit {
             title: new FormControl(editgame.title, Validators.required),
             genre: new FormControl(editgame.genre, Validators.required),
             engine: new FormControl(editgame.engine, Validators.required),
+            platforms: new FormControl(editgame.platforms, Validators.required),
             imagePath: new FormControl(editgame.imagePath, Validators.required),
-            website: new FormControl(editgame.website, Validators.required),
-            releaseDate: new FormControl(editgame.releaseDate, Validators.required),
+            gameWebsite: new FormControl(editgame.gameWebsite, Validators.required),
+            releaseDate: new FormControl(editgame.releaseDate),
             publishers: new FormControl(editgame.publishers, Validators.required)
           });
         })
@@ -145,9 +146,9 @@ export class GameEditComponent implements OnInit {
       publisherName: new FormControl('', Validators.required),
       founder: new FormControl('', Validators.required),
       ceo: new FormControl('', Validators.required),
-      website: new FormControl('', Validators.required),
+      publisherWebsite: new FormControl('', Validators.required),
       yearFounded: new FormControl('', Validators.required),
-      user: new FormControl(localStorage.userId),
+      user: new FormControl(localStorage.userId)
     });
 
 
@@ -155,8 +156,9 @@ export class GameEditComponent implements OnInit {
       title: new FormControl('', Validators.required),
       genre: new FormControl('', Validators.required),
       engine: new FormControl('', Validators.required),
+      platforms: new FormControl(editgame.platforms, Validators.required),
       imagePath: new FormControl('', Validators.required),
-      website: new FormControl('', Validators.required),
+      gameWebsite: new FormControl('', Validators.required),
       releaseDate: new FormControl('', Validators.required),
       publishers: new FormControl('', Validators.required),
       user: new FormControl(localStorage.userId)

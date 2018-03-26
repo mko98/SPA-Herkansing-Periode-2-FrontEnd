@@ -14,7 +14,12 @@ export class GameListComponent implements OnInit {
   games: Game[];
   subscription: Subscription;
   isLoggedIn: boolean;
-
+  showFilterGenre = true;
+  showFilterEngine = true;
+  showFilterPlatform = true;
+  genreValues: '';
+  engineValues: '';
+  platformValues: '';
 
   constructor(private gameService: GameService,
               private router: Router,
@@ -38,6 +43,68 @@ export class GameListComponent implements OnInit {
         }
       );
     this.isLoggedIn = localStorage.userId === undefined;
+  }
+
+
+
+  onKeyGenre(event: any) {
+    this.genreValues = event.target.value;
+    console.log(this.genreValues);
+    this.gameService.searchGenre(this.genreValues).then((filteredGames) => {
+          this.games = filteredGames;
+        });
+  }
+
+  onKeyEngine(event: any) {
+    this.engineValues = event.target.value;
+    console.log(this.engineValues);
+    this.gameService.searchEngine(this.engineValues).then((filteredGames) => {
+      this.games = filteredGames;
+    });
+  }
+
+  onKeyPlatform(event: any) {
+    this.platformValues = event.target.value;
+    console.log(this.platformValues);
+    this.gameService.searchPlatform(this.platformValues).then((filteredGames) => {
+      this.games = filteredGames;
+    });
+  }
+
+  showGenreFilter() {
+    this.showFilterGenre = !this.showFilterGenre;
+
+    if (this.showFilterEngine === false) {
+      this.showFilterEngine = true;
+      this.ngOnInit();
+    } else if (this.showFilterPlatform === false) {
+      this.showFilterPlatform = true;
+      this.ngOnInit();
+    }
+  }
+
+  showEngineFilter() {
+    this.showFilterEngine = !this.showFilterEngine;
+
+      if (this.showFilterGenre === false) {
+      this.showFilterGenre = true;
+      this.ngOnInit();
+    } else if(this.showFilterPlatform === false) {
+        this.showFilterPlatform = true;
+        this.ngOnInit();
+      }
+  }
+
+  showPlatformFilter() {
+    this.showFilterPlatform = !this.showFilterPlatform;
+
+    if (this.showFilterGenre === false) {
+      this.showFilterGenre = true;
+      this.ngOnInit();
+    } else if (this.showFilterEngine === false) {
+      this.showFilterEngine = true;
+      this.ngOnInit();
+    }
   }
 
   onLogout() {

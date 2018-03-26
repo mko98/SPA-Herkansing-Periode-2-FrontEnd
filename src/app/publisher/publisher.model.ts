@@ -5,7 +5,7 @@ export class Publisher {
   private _publisherName: string;
   private _founder: string;
   private _ceo: string;
-  private _website: string;
+  private _publisherWebsite: string;
   private _yearFounded: Date;
   private _user: User;
 
@@ -45,12 +45,12 @@ export class Publisher {
     this._ceo = n;
   }
 
-  public get website(): string {
-    return this._website;
+  public get publisherWebsite(): string {
+    return this._publisherWebsite;
   }
 
-  public set website(i: string) {
-    this._website = i;
+  public set publisherWebsite(i: string) {
+    this._publisherWebsite = i;
   }
 
   public get yearFounded(): Date {

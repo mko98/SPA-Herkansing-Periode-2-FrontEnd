@@ -7,7 +7,8 @@ export class Game {
   private _genre: string;
   private _engine: string;
   private _imagePath: string;
-  private _website: string;
+  private _gameWebsite: string;
+  private _platforms: [object];
   private _releaseDate: Date;
   private _publishers: Publisher;
   private _user: User;
@@ -56,12 +57,20 @@ export class Game {
     this._imagePath = i;
   }
 
-  public get website(): string {
-    return this._website;
+  public get gameWebsite(): string {
+    return this._gameWebsite;
   }
 
-  public set website(i: string) {
-    this._website = i;
+  public set gameWebsite(i: string) {
+    this._gameWebsite = i;
+  }
+
+  public get platforms(): [object] {
+    return this._platforms;
+  }
+
+  public set platforms(i: [object])  {
+    this._platforms = i;
   }
 
   public get releaseDate(): Date {

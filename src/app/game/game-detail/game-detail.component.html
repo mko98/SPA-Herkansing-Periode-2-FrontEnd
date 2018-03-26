@@ -45,12 +45,19 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" >
         <div class="col-xs-12">
-          <a href="{{game.website}}">Go to the games website</a>
+          <a *ngIf="game.website !== undefined" href="{{game.website}}" target="_blank">Go to the games website</a>
+          <a *ngIf="game.website === undefined">This game does not have a website</a>
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-xs-12">
+          <strong>Platforms:</strong>
+           {{ game.platforms }}
+        </div>
+      </div>
 
       <app-game-publisher-item
             *ngFor="let publisherEL of game.publishers"

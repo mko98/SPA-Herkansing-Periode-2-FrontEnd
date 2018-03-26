@@ -12,6 +12,39 @@
       <br>
       <button class="btn btn-danger itemStyle" (click)="onLogout()"><span class="glyphicon glyphicon-plus iconButton"></span>Logout</button>
     </div>
+    <br>
+    <div>
+      <button (click)="ngOnInit()" class="btn btn-danger">Remove filter</button>
+            <!--<button [hidden]="!showFilterGenre" class="btn btn-success" (click)="showGenreFilter()" onclick="document.getElementById('engineInput').value = ''">Show genre filter</button>-->
+      <!--<button [hidden]="showFilterGenre" class="btn btn-warning" (click)="showGenreFilter()" onclick="document.getElementById('genreInput').value = ''">Close genre filters</button>-->
+      <!--<button [hidden]="!showFilterEngine" class="btn btn-success" (click)="showEngineFilter()" onclick="document.getElementById('genreInput').value = ''">Show engine filter</button>-->
+      <!--<button [hidden]="showFilterEngine" class="btn btn-warning" (click)="showEngineFilter()" onclick="document.getElementById('engineInput').value = ''">Close engine filters</button>-->
+      <!--<button [hidden]="!showFilterPlatform" class="btn btn-success" (click)="showPlatformFilter()" onclick="document.getElementById('platformInput').value = ''" style="margin-top: 10px">Show platform filter</button>-->
+      <!--<button [hidden]="showFilterPlatform" class="btn btn-warning" (click)="showPlatformFilter()" onclick="document.getElementById('platformInput').value = ''" style="margin-top: 10px">Close platform filters</button>-->
+    </div>
+
+    <br>
+    <mat-form-field>
+    <mat-select placeholder="Select filter" type="text">
+      <mat-option (click)="showGenreFilter()" onclick="document.getElementById('genreInput').value = ''">Show genre filter</mat-option>
+      <mat-option (click)="showEngineFilter()" onclick="document.getElementById('engineInput').value = ''">Show engine filter</mat-option>
+      <mat-option (click)="showPlatformFilter()" onclick="document.getElementById('platformInput').value = ''">Show platform filter</mat-option>
+    </mat-select>
+    </mat-form-field>
+    <br>
+    <div>
+    <form class="example-form">
+      <mat-form-field class="example-full-width"  [hidden]="showFilterGenre">
+        <input matInput placeholder="Genre" (keyup)="onKeyGenre($event)" id="genreInput">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" [hidden]="showFilterEngine">
+        <input matInput placeholder="Engine" (keyup)="onKeyEngine($event)" id="engineInput">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" [hidden]="showFilterPlatform">
+        <input matInput placeholder="Platform" (keyup)="onKeyPlatform($event)" id="platformInput">
+      </mat-form-field>
+    </form>
+    </div>
   </div>
 </div>
 <br>

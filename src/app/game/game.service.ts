@@ -134,6 +134,36 @@ export class GameService {
       });
   }
 
+  searchGenre(genre: String) {
+    return this.http.get(this.serverUrl + 'genre/' + genre)
+      .toPromise()
+      .then(response => {
+        this.games = response.json() as Game[];
+        console.log(response.json());
+        return response.json() as Game[];
+      });
+  }
+
+  searchEngine(engine: String) {
+    return this.http.get(this.serverUrl + 'engine/' + engine)
+      .toPromise()
+      .then(response => {
+        this.games = response.json() as Game[];
+        console.log(response.json());
+        return response.json() as Game[];
+      });
+  }
+
+  searchPlatform(platform: String) {
+    return this.http.get(this.serverUrl + 'platform/' + platform)
+      .toPromise()
+      .then(response => {
+        this.games = response.json() as Game[];
+        console.log(response.json());
+        return response.json() as Game[];
+      });
+  }
+
   private handleError(error: any): Promise<any> {
     console.log('handleError');
     return Promise.reject(error.message || error);

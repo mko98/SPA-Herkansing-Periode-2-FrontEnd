@@ -38,7 +38,8 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <a href="{{publisher.website}}">Go to the publishers website</a>
+          <a *ngIf="publisher.publisherWebsite !== undefined" href="{{publisher.publisherWebsite}}" target="_blank">Go to the publishers website</a>
+          <a *ngIf="publisher.publisherWebsite === undefined">This publisher does not have a website</a>
         </div>
       </div>
 

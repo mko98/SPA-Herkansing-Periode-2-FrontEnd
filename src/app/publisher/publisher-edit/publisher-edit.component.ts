@@ -70,7 +70,7 @@ export class PublisherEditComponent implements OnInit{
             publisherName: new FormControl(editpublisher.publisherName, Validators.required),
             founder: new FormControl(editpublisher.founder, Validators.required),
             ceo: new FormControl(editpublisher.ceo, Validators.required),
-            website: new FormControl(editpublisher.website, Validators.required),
+            publisherWebsite: new FormControl(editpublisher.publisherWebsite, Validators.required),
             yearFounded: new FormControl(editpublisher.yearFounded, Validators.required),
           });
         })
@@ -81,9 +81,9 @@ export class PublisherEditComponent implements OnInit{
       publisherName: new FormControl('', Validators.required),
       founder: new FormControl('', Validators.required),
       ceo: new FormControl('', Validators.required),
-      website: new FormControl('', Validators.required),
+      publisherWebsite: new FormControl('', Validators.required),
       yearFounded: new FormControl('', Validators.required),
-      user: new FormControl(localStorage.userId),
+      user: new FormControl(localStorage.userId)
     });
   }
 
