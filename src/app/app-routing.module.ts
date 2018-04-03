@@ -14,7 +14,7 @@ import {UserRegisterComponent} from './user/user-register/user-register.componen
 
 const appRoutes: Routes = [
 
-  { path: '', redirectTo: '/games', pathMatch: 'full' },
+  { path: '', redirectTo: '/games', pathMatch: 'full'},
   { path: 'publishers', component: PublisherComponent, children: [
       { path: '', component: PublisherStartComponent },
       { path: 'new', component: PublisherEditComponent },

@@ -53,8 +53,6 @@ export class PublisherListComponent implements OnInit {
 
   }
 
-  onNewPublisher() {
-    this.router.navigate(['new'], {relativeTo: this.route});
-  }
+
 
 }

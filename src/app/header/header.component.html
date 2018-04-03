@@ -1,6 +1,18 @@
 <mat-toolbar color="primary">
-  <span (click)="onClick()" style="cursor: pointer;" >SPA Herkansing</span>
-  <span class="example-fill-remaining-space"></span>
+
+  <span (click)="onClick()" style="cursor: pointer" class="title-center" >SPA Herkansing</span>
+  <div [hidden]="!isLoggedIn" style="margin-left: 88%" >
+    <button class="btn btn-success itemStyle float-right" style="cursor: pointer; " (click)="onLogin()"><span class="glyphicon glyphicon-plus iconButton"></span>Login</button>
+  </div>
+  <div [hidden]="isLoggedIn" style="margin-left: 87%">
+    <mat-select placeholder="Options">
+      <mat-option (click)="onNewGame()">New Game</mat-option>
+      <mat-option (click)="onNewPublisher()">New Publisher</mat-option>
+      <mat-option (click)="onLogout()">Logout</mat-option>
+    </mat-select>
+    <!--<button class="btn btn-danger itemStyle" (click)="onLogout()"><span class="glyphicon glyphicon-plus iconButton"></span>Logout</button>-->
+  </div>
+
 </mat-toolbar>
 
 <nav mat-tab-nav-bar>

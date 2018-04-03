@@ -156,9 +156,9 @@ export class GameEditComponent implements OnInit {
       title: new FormControl('', Validators.required),
       genre: new FormControl('', Validators.required),
       engine: new FormControl('', Validators.required),
-      platforms: new FormControl(editgame.platforms, Validators.required),
+      platforms: new FormControl('', Validators.required),
       imagePath: new FormControl('', Validators.required),
-      gameWebsite: new FormControl('', Validators.required),
+      gameWebsite: new FormControl('http://www.example.com', Validators.required),
       releaseDate: new FormControl('', Validators.required),
       publishers: new FormControl('', Validators.required),
       user: new FormControl(localStorage.userId)

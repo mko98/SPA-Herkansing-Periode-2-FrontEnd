@@ -1,4 +1,4 @@
-<div class="row" style="margin-top: 20px;">
+<div class="row" style="margin-top: 100px;">
   <div class="col-xs-12">
     <form [formGroup]="publisherForm" (ngSubmit)="onSubmit()">
       <div class="row">
@@ -37,7 +37,7 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <mat-form-field>
+            <mat-form-field class="datePickerWidth">
               <input matInput id="yearFounded" formControlName="yearFounded" [matDatepicker]="picker" ng-model-options="{timezone:'CEST'}" placeholder="Choose a date">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
@@ -49,8 +49,8 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="form-group">
-            <label for="website">Website</label>
-            <input type="text" id="website" formControlName="website" class="form-control">
+            <label for="publisherWebsite">Website</label>
+            <input type="text" id="publisherWebsite" formControlName="publisherWebsite" class="form-control">
           </div>
         </div>
       </div>

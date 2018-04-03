@@ -3,26 +3,10 @@
     <h1>Game List</h1>
   </div>
   <div class="col-xs-3">
-    <button [hidden]="isLoggedIn" class="btn btn-success itemStyle" (click)="onNewGame()"><span class="glyphicon glyphicon-plus iconButton"></span>New Game</button>
-    <div [hidden]="!isLoggedIn">
-      <h4>Login to add a Game!</h4>
-      <button class="btn btn-success itemStyle" (click)="onLogin()"><span class="glyphicon glyphicon-plus iconButton"></span>Login</button>
-    </div>
-    <div [hidden]="isLoggedIn">
+    <div *ngIf="!showFilterGenre || !showFilterEngine || !showFilterPlatform">
       <br>
-      <button class="btn btn-danger itemStyle" (click)="onLogout()"><span class="glyphicon glyphicon-plus iconButton"></span>Logout</button>
+      <button  (click)="ngOnInit()" class="btn btn-danger">Remove filter</button>
     </div>
-    <br>
-    <div>
-      <button (click)="ngOnInit()" class="btn btn-danger">Remove filter</button>
-            <!--<button [hidden]="!showFilterGenre" class="btn btn-success" (click)="showGenreFilter()" onclick="document.getElementById('engineInput').value = ''">Show genre filter</button>-->
-      <!--<button [hidden]="showFilterGenre" class="btn btn-warning" (click)="showGenreFilter()" onclick="document.getElementById('genreInput').value = ''">Close genre filters</button>-->
-      <!--<button [hidden]="!showFilterEngine" class="btn btn-success" (click)="showEngineFilter()" onclick="document.getElementById('genreInput').value = ''">Show engine filter</button>-->
-      <!--<button [hidden]="showFilterEngine" class="btn btn-warning" (click)="showEngineFilter()" onclick="document.getElementById('engineInput').value = ''">Close engine filters</button>-->
-      <!--<button [hidden]="!showFilterPlatform" class="btn btn-success" (click)="showPlatformFilter()" onclick="document.getElementById('platformInput').value = ''" style="margin-top: 10px">Show platform filter</button>-->
-      <!--<button [hidden]="showFilterPlatform" class="btn btn-warning" (click)="showPlatformFilter()" onclick="document.getElementById('platformInput').value = ''" style="margin-top: 10px">Close platform filters</button>-->
-    </div>
-
     <br>
     <mat-form-field>
     <mat-select placeholder="Select filter" type="text">

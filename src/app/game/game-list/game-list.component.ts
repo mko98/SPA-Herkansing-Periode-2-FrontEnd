@@ -13,7 +13,7 @@ export class GameListComponent implements OnInit {
 
   games: Game[];
   subscription: Subscription;
-  isLoggedIn: boolean;
+  isLoggedIn = true;
   showFilterGenre = true;
   showFilterEngine = true;
   showFilterPlatform = true;
@@ -42,7 +42,14 @@ export class GameListComponent implements OnInit {
           console.dir(games);
         }
       );
-    this.isLoggedIn = localStorage.userId === undefined;
+    this.router.events.subscribe(url => {
+      this.isLoggedIn = localStorage.userId === undefined;
+      console.log(this.isLoggedIn);
+      console.log(url);
+    });
+    this.showFilterGenre = true;
+    this.showFilterEngine = true;
+    this.showFilterPlatform = true;
   }
 
 
@@ -107,18 +114,5 @@ export class GameListComponent implements OnInit {
     }
   }
 
-  onLogout() {
-    localStorage.clear();
-    this.ngOnInit();
-  }
-
-  onLogin() {
-    this.router.navigate(['../user/login'], {relativeTo: this.route});
-
-  }
-
-  onNewGame() {
-    this.router.navigate(['new'], {relativeTo: this.route});
-  }
 
 }
