@@ -92,68 +92,68 @@
         </div>
       </div>
     </form>
-        <div class="col-xs-12">
-          <div class="form-group"
-               [hidden]="addPublisherVisible">
-            <form [formGroup]="publisherForm" (ngSubmit)="onSubmit()">
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="form-group">
-                    <label for="publisherName">Name</label>
-                    <input type="text" id="publisherName" formControlName="publisherName" class="form-control">
-                  </div>
-                </div>
+    <div class="col-xs-12">
+      <div class="form-group"
+           [hidden]="addPublisherVisible">
+        <form [formGroup]="publisherForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="publisherName">Name</label>
+                <input type="text" id="publisherName" formControlName="publisherName" class="form-control">
               </div>
-
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="form-group">
-                    <label for="founder">Founder</label>
-                    <input type="texr" id="founder" formControlName="founder" class="form-control">
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="form-group">
-                    <label for="ceo">CEO</label>
-                    <input type="text" id="ceo" formControlName="ceo" class="form-control">
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="form-group">
-                    <mat-form-field>
-                      <input matInput id="yearFounded" formControlName="yearFounded" [matDatepicker]="publisherYearFoundedPicker" ng-model-options="{timezone:'CEST'}" placeholder="Choose a date">
-                      <mat-datepicker-toggle matSuffix [for]="publisherYearFoundedPicker"></mat-datepicker-toggle>
-                      <mat-datepicker #publisherYearFoundedPicker></mat-datepicker>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="form-group">
-                    <label for="publisherWebsite">Website</label>
-                    <input type="text" id="publisherWebsite" formControlName="publisherWebsite" class="form-control">
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-xs-12">
-                  <button type="button" (click)="onAddPublisher()" class="btn btn-success itemStyle" [disabled]="!publisherForm.valid">Save</button>
-                  <button type="button" class="btn btn-danger itemStyle " (click)="onCancelAddPublisher()">Cancel</button>
-                </div>
-              </div>
-
-            </form>
+            </div>
           </div>
-        </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="founder">Founder</label>
+                <input type="texr" id="founder" formControlName="founder" class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="ceo">CEO</label>
+                <input type="text" id="ceo" formControlName="ceo" class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <mat-form-field>
+                  <input matInput id="yearFounded" formControlName="yearFounded" [matDatepicker]="publisherYearFoundedPicker" ng-model-options="{timezone:'CEST'}" placeholder="Choose a date">
+                  <mat-datepicker-toggle matSuffix [for]="publisherYearFoundedPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #publisherYearFoundedPicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="form-group">
+                <label for="publisherWebsite">Website</label>
+                <input type="text" id="publisherWebsite" formControlName="publisherWebsite" class="form-control">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="button" (click)="onAddPublisher()" class="btn btn-success itemStyle" [disabled]="!publisherForm.valid">Save</button>
+              <button type="button" class="btn btn-danger itemStyle " (click)="onCancelAddPublisher()">Cancel</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
 
 
 
