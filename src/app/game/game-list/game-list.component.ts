@@ -47,9 +47,14 @@ export class GameListComponent implements OnInit {
       console.log(this.isLoggedIn);
       console.log(url);
     });
-    this.showFilterGenre = true;
-    this.showFilterEngine = true;
-    this.showFilterPlatform = true;
+    if (!this.showFilterGenre || !this.showFilterEngine || !this.showFilterPlatform) {
+
+    } else {
+      this.showFilterGenre = true;
+      this.showFilterEngine = true;
+      this.showFilterPlatform = true;
+    }
+
   }
 
 
